@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tetris"
         mc:Ignorable="d"
-        Title="Tetris" Height="531" Width="509" KeyDown="WTetris_KeyDown" Loaded="WTetris_Loaded">
+        Title="Brick game" Height="531" Width="509" KeyDown="WTetris_KeyDown" Loaded="WTetris_Loaded">
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Template">
