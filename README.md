@@ -14,3 +14,5 @@ Just run in your favorite compiler with C# support and WPF enabled.
 
 ## Project preview
 
+![Game Screenshot](Tetris/preview1.png)
+
