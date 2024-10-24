@@ -1,7 +1,7 @@
-﻿<Application x:Class="Tetris.App"
+﻿<Application x:Class="BrickGame.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Tetris"
+             xmlns:local="clr-namespace:BrickGame"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

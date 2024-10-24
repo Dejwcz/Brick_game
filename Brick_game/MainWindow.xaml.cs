@@ -11,10 +11,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Globalization;
-using TXTS = Tetris.Properites.Resources;
+using TXTS = Brick_game.Properites.Resources;
 using System.IO;
 
-namespace Tetris; 
+namespace BrickGame; 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
@@ -50,9 +50,7 @@ public partial class MainWindow : Window {
         SetSettings(LoadSetting());
         SetUI();
         //for (int i = 120; i < 120 + columns; i++) { squares[i].Background = Brushes.Red; }      //Test line
- 
     }
-
     private void SetUI() {
         #region gameField
         MainContainer.Children.Clear();
@@ -146,7 +144,6 @@ public partial class MainWindow : Window {
 
         #endregion
     }
-
     public void GameOn() {                                                      //Start game    
         if (timer == null) {
             timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(speed) };
@@ -383,6 +380,28 @@ public partial class MainWindow : Window {
         if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
         else { BStart.Content = TXTS.ButtonStart;}
     }
+    private string[] LoadSetting() {
+        StreamReader sr;
+        try {
+            sr = new StreamReader(settingFile);
+        }
+        catch (FileNotFoundException) {
+            StreamWriter sw = new StreamWriter(settingFile);
+            sw.WriteLine("20,10,20,5,");
+            sw.Close();
+            sr = new StreamReader(settingFile);
+        }
+        string[] strings = sr.ReadLine().Split(",");
+        sr.Close();
+        return strings;
+    }
+    private void SetSettings(string[] settings) {
+        rows = int.Parse(settings[0]);
+        columns = int.Parse(settings[1]);
+        squareSize = int.Parse(settings[2]);
+        speed = 550 - int.Parse(settings[3]) * 50; 
+        if (timer != null) timer.Interval = TimeSpan.FromMilliseconds(speed);
+    }
     private void BStart_Click(object sender, RoutedEventArgs e) {
         if (!gameIsOn && isClearBoard) {
             GameOn();
@@ -459,30 +478,6 @@ public partial class MainWindow : Window {
         else {
         }      
     }
-
-    private string[] LoadSetting() {
-        StreamReader sr;
-        try {
-            sr = new StreamReader(settingFile);
-        }
-        catch (FileNotFoundException) {
-            StreamWriter sw = new StreamWriter(settingFile);
-            sw.WriteLine("20,10,20,5,");
-            sw.Close();
-            sr = new StreamReader(settingFile);
-        }
-        string[] strings = sr.ReadLine().Split(",");
-        sr.Close();
-        return strings;
-    }
-    private void SetSettings(string[] settings) {
-        rows = int.Parse(settings[0]);
-        columns = int.Parse(settings[1]);
-        squareSize = int.Parse(settings[2]);
-        speed = 550 - int.Parse(settings[3]) * 50; 
-        if (timer != null) timer.Interval = TimeSpan.FromMilliseconds(speed);
-    }
-
     private void MIHelp_Click(object sender, RoutedEventArgs e) {
         MessageBox.Show(WTetris, TXTS.MIHelpMessage);
     }

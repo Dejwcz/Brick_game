@@ -12,10 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TXTS = Tetris.Properites.Resources;
+using TXTS = Brick_game.Properites.Resources;
 
 
-namespace Tetris {
+namespace BrickGame {
     /// <summary>
     /// Interaction logic for WSettings.xaml
     /// </summary>

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Tetris {
+namespace BrickGame {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

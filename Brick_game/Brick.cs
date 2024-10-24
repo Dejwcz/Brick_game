@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Tetris;
+namespace BrickGame;
 public class Brick {
     //private int x;
     //private int y;
@@ -25,7 +25,6 @@ public class Brick {
             if (isOn) Can.Background = Brushes.Red;
         }
     }
-
     public bool Check { get => check; set => check = value; }
 
     public Brick(int pos, Canvas c) {

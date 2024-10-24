@@ -1,9 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris", "Tetris\Tetris.csproj", "{E6831F7B-39F4-4640-BE51-A4BDDFEA8EFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brick_game", "Brick_game\Brick_game.csproj", "{E6831F7B-39F4-4640-BE51-A4BDDFEA8EFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A0512E25-9F0D-4138-828B-2DC9EE1AB0FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
