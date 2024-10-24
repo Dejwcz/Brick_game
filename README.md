@@ -13,6 +13,11 @@ You can change dimensions of game board, bricks and also speed of falling. Game 
 
 Just run in your favorite compiler with C# support and WPF enabled.
 
+## Dependencies
+
+- .NET 8.0 (or higher)
+- Windows Presentation Foundation (WPF)
+
 ## Project preview
 
 ![Game Screenshot](Brick_game/preview1.png)
