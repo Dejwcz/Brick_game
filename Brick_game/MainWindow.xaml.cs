@@ -11,7 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Globalization;
-using TXTS = Brick_game.Properites.Resources;
+using TXTS = Brick_game.Properties.Resources;
 using System.IO;
 
 namespace BrickGame; 
@@ -23,6 +23,9 @@ public partial class MainWindow : Window {
     private int columns;// = 10;
     private int squareSize;// = 20;
     private int speed;// = 200;                         //Speed of falling in "miliseconds"
+    private Brush bGBColor;                             //Background of gameboard color
+    private Brush bBrickColor;                          //Brick color
+    private Brush bGridColor;                           //Grid color
 
     private int score = 0;                              //Score
     private bool gameIsOn = false;                      //Game is running
@@ -49,9 +52,10 @@ public partial class MainWindow : Window {
         InitializeComponent();
         SetSettings(LoadSetting());
         SetUI();
-        //for (int i = 120; i < 120 + columns; i++) { squares[i].Background = Brushes.Red; }      //Test line
+        //for (int i = 120; i < 120 + columns; i++) { squares[i].Background = bBrickColor; }      //Test line
     }
     private void SetUI() {
+
         #region gameField
         MainContainer.Children.Clear();
         gameField = new Grid {
@@ -66,13 +70,13 @@ public partial class MainWindow : Window {
         for (int i = 0; i < columns; i++) { gameField.ColumnDefinitions.Add(new ColumnDefinition()); }
         squares = new Canvas[rows * columns];
         for (int i = 0; i < rows * columns; i++) {
-            squares[i] = new Canvas { Height = squareSize, Width = squareSize, Background = Brushes.AliceBlue };
+            squares[i] = new Canvas { Height = squareSize, Width = squareSize, Background = bGBColor };
 
             int row = i / columns;                  //Row position determination
             int col = i % columns;                  //Column position determination
 
             Border border = new Border {
-                BorderBrush = Brushes.LightGreen,   // Line color
+                BorderBrush = bGridColor,   // Line color
                 BorderThickness = new Thickness(1), // 
                 Child = squares[i]                  // Adding square into borders
             };
@@ -83,7 +87,7 @@ public partial class MainWindow : Window {
         }
 
         #endregion
-        #region WTetrisAndItemsProperiesSettings
+        #region WTetrisAndItemsPropertiesSettings
         MainContainer.Children.Add(gameField);
         MainContainer.Height = gameField.Height;
         MainContainer.Width = gameField.Width;
@@ -153,7 +157,7 @@ public partial class MainWindow : Window {
     }
     public void NewGame() {                                                     //Clears board
         {
-            foreach (Canvas b in squares) { b.Background = Brushes.AliceBlue; }
+            foreach (Canvas b in squares) { b.Background = bGBColor; }
         }
         isClearBoard = true;
         score = 0;
@@ -172,7 +176,7 @@ public partial class MainWindow : Window {
             if (isBottomBrick) { bricksToCheck.Add(b); }
         }
         foreach (Brick b in bricksToCheck) {                                                            //Checking free space to move
-            if (b.Pos + columns >= rows * columns || squares[b.Pos + columns].Background.Equals(Brushes.Red)) {
+            if (b.Pos + columns >= rows * columns || squares[b.Pos + columns].Background.Equals(bBrickColor)) {
                 canMove = false;
                 switch (UpdateGameField()) {                                                            //If methods return sum of cleared rows updates score 
                 case 1: score += 40; break;
@@ -186,17 +190,17 @@ public partial class MainWindow : Window {
         }
         if (canMove) {                                                                                  //Moving
             foreach (Brick b in shape) {
-                squares[b.Pos].Background = Brushes.AliceBlue;
+                squares[b.Pos].Background = bGBColor;
             }
             foreach (Brick b in shape) {
                 b.Pos += columns;
-                squares[b.Pos].Background = Brushes.Red;
+                squares[b.Pos].Background = bBrickColor;
             }
         }
         else {                                                                                           //If the shape is down, new starts. 
             currentShape = CreateNewShape();
             if (!CanPlaceNewShape(currentShape)) {                                                       //If there is no room for the new, game ends
-                foreach (Brick b in shape) { b.IsOn = true; }
+                foreach (Brick b in currentShape) { squares[b.Pos].Background = bBrickColor; }
                 timer.Stop();
                 gameIsOn = false;
                 LGameOver.Visibility = Visibility.Visible;
@@ -215,18 +219,18 @@ public partial class MainWindow : Window {
             if (isLeftBrick) { bricksToCheck.Add(b); }
         }
         foreach (Brick b in bricksToCheck) {                                                            //Checking free space to move (edge or another brick)
-            if (b.Pos % columns == columns-1 || squares[b.Pos + 1].Background.Equals(Brushes.Red)) {
+            if (b.Pos % columns == columns-1 || squares[b.Pos + 1].Background.Equals(bBrickColor)) {
                 canMove = false;
                 break;
             }
         }
         if (canMove) {                                                                                  //Moving
             foreach (Brick b in shape) {
-                squares[b.Pos].Background = Brushes.AliceBlue;
+                squares[b.Pos].Background = bGBColor;
             }
             foreach (Brick b in shape) {
                 b.Pos += 1;
-                squares[b.Pos].Background = Brushes.Red;
+                squares[b.Pos].Background = bBrickColor;
             }
         }
     }
@@ -242,18 +246,18 @@ public partial class MainWindow : Window {
             if (isLeftBrick) { bricksToCheck.Add(b); }
         }
         foreach (Brick b in bricksToCheck) {                                                            //Checking free space to move (edge or another brick)
-            if (b.Pos % columns == 0 || squares[b.Pos - 1].Background.Equals(Brushes.Red)) {
+            if (b.Pos % columns == 0 || squares[b.Pos - 1].Background.Equals(bBrickColor)) {
                 canMove = false;
                 break;
             }
         }
         if (canMove) {                                                                                  //Moving
             foreach (Brick b in shape) {
-                squares[b.Pos].Background = Brushes.AliceBlue;
+                squares[b.Pos].Background = bGBColor;
             }
             foreach (Brick b in shape) {
                 b.Pos -= 1;
-                squares[b.Pos].Background = Brushes.Red;
+                squares[b.Pos].Background = bBrickColor;
             }
         }
     }
@@ -273,7 +277,7 @@ public partial class MainWindow : Window {
                         int newY = pivoty + rotatedY;
                         int newPos = newY * 10 + newX;
                         if (newX < 0 || newX >= columns || newY < 0 || newY >= rows ||
-                        (squares[newPos].Background.Equals(Brushes.Red) && !shape.Any(brick => brick.Pos == newPos))) return;
+                        (squares[newPos].Background.Equals(bBrickColor) && !shape.Any(brick => brick.Pos == newPos))) return;
                     }
                 }
                 Brick[] newShape = new Brick[shape.Length];
@@ -291,7 +295,7 @@ public partial class MainWindow : Window {
                         b.Pos = (pivoty + relativeX) * columns + (pivotx + (-relativeY));
                     }
                 }
-                foreach (Brick b in shape) { squares[b.Pos].Background = Brushes.AliceBlue; }
+                foreach (Brick b in shape) { squares[b.Pos].Background = bGBColor; }
                 if (CanPlaceNewShape(newShape)) {
                     foreach (Brick b in shape) {
                         if (b != pivot) {
@@ -299,16 +303,16 @@ public partial class MainWindow : Window {
                             int relativeY = b.Pos / columns - pivoty;
                             b.Pos = (pivoty + relativeX) * columns + (pivotx + (-relativeY));
                         }
-                        squares[b.Pos].Background = Brushes.Red;
+                        squares[b.Pos].Background = bBrickColor;
                     }
                 }
-                else { foreach (Brick b in shape) { squares[b.Pos].Background = Brushes.Red; } }
+                else { foreach (Brick b in shape) { squares[b.Pos].Background = bBrickColor; } }
             }
         }
     }
     private bool CanPlaceNewShape(Brick[] shape) {                                                  //Checking space for new shape
         foreach (Brick b in shape) {
-            if (squares[b.Pos].Background.Equals(Brushes.Red)) {
+            if (squares[b.Pos].Background.Equals(bBrickColor)) {
                 return false;
             }
         }
@@ -341,14 +345,14 @@ public partial class MainWindow : Window {
         for (int i = 0; i < rows; i++) {
         fullRow = true;
             for (int j = 0 + columns * i; j < columns + columns * i; j++) {
-                if (squares[j].Background.Equals(Brushes.AliceBlue)) {                              //If finds empty field skips row
+                if (squares[j].Background.Equals(bGBColor)) {                              //If finds empty field skips row
                     fullRow = false;
                     break;
                 }
             }
             if (fullRow) {
                 rowCleared++;
-                for (int k = 0 + columns * i; k < columns + columns * i; k++) { squares[k].Background = Brushes.AliceBlue; }
+                for (int k = 0 + columns * i; k < columns + columns * i; k++) { squares[k].Background = bGBColor; }
                 if (i == rows - 1) {
                     for (int l = (columns * rows) - 1; l >= columns; l--) { squares[l].Background = squares[l - columns].Background; }
                 }
@@ -401,6 +405,10 @@ public partial class MainWindow : Window {
         squareSize = int.Parse(settings[2]);
         speed = 550 - int.Parse(settings[3]) * 50; 
         if (timer != null) timer.Interval = TimeSpan.FromMilliseconds(speed);
+
+        bGBColor = (Brush)new BrushConverter().ConvertFromString(settings[4]);
+        bBrickColor = (Brush)new BrushConverter().ConvertFromString(settings[5]);
+        bGridColor = (Brush)new BrushConverter().ConvertFromString(settings[6]);
     }
     private void BStart_Click(object sender, RoutedEventArgs e) {
         if (!gameIsOn && isClearBoard) {
@@ -474,6 +482,8 @@ public partial class MainWindow : Window {
             SetSettings(LoadSetting());
             SetUI();
             NewGame();
+            if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
+            else { BStart.Content = TXTS.ButtonStart; }
         }
         else {
         }      

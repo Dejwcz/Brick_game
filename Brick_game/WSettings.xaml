@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BrickGame"
+        xmlns:properties="clr-namespace:Brick_game.Properties"
         mc:Ignorable="d"
-        Title="WSettings" Height="450" Width="400" >
+        Title="WSettings" Height="471" Width="560" ResizeMode="NoResize" >
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Template">
@@ -21,23 +22,103 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="RoundedLabelStyle" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Border CornerRadius="5" 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundedTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="5" 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundedComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border CornerRadius="3" 
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style><!--Too complicated for now -->
     </Window.Resources>
     <Grid>
+        <GroupBox x:Name="GBColors" HorizontalAlignment="Left" Height="125" Header="{x:Static properties:Resources.GBColors}" Margin="270,10,0,0" VerticalAlignment="Top" Width="248"/>
         <GroupBox x:Name="GBSquareSize" HorizontalAlignment="Left" Height="62" Header="GPSquareSize" Margin="30,104,0,0" VerticalAlignment="Top" Width="185"/>
         <GroupBox x:Name="GBStartSpeed" HorizontalAlignment="Left" Height="62" Header="GPStartSpeed" Margin="30,178,0,0" VerticalAlignment="Top" Width="185"/>
-
         <GroupBox x:Name="GBGameboardSize" HorizontalAlignment="Left" Height="89" Header="GBGameboardSize" Margin="30,10,0,0" VerticalAlignment="Top" Width="185"/>
         <Button x:Name="BSave" Content="BSave" HorizontalAlignment="Left" Height="40" Margin="30,30,0,30" VerticalAlignment="Bottom" Width="150" Focusable="False" Click="BSave_Click" Style="{StaticResource RoundedButtonStyle}"/>
         <Button x:Name="BBack" Content="BBack" HorizontalAlignment="Right" Height="40" Margin="0,0,30,30" VerticalAlignment="Bottom" Width="150" Focusable="False" Click="BBack_Click" Style="{StaticResource RoundedButtonStyle}"/>
-        <Label x:Name="LHeigth" Content="LHeight: " HorizontalAlignment="Left" Height="27" Margin="35,30,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="LWidth" Content="LWidth: " HorizontalAlignment="Left" Height="27" Margin="35,62,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="TBHeigth" HorizontalAlignment="Left" Height="27" Margin="120,30,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 10 &#xA;max: 100" LostFocus="TBHeigth_LostFocus"/>
-        <TextBox x:Name="TBWidth" HorizontalAlignment="Left" Height="27" Margin="120,62,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 10 &#xA;max: 100" LostFocus="TBWidth_LostFocus"/>
-        <Label x:Name="LSquareSize" Content="LSquareSize: " HorizontalAlignment="Left" Height="27" Margin="35,130,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="TBSquareSize" HorizontalAlignment="Left" Height="27" Margin="120,130,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 2 &#xA;max: 40" LostFocus="TBSquareSize_LostFocus"/>
-        <Label x:Name="LStartSpeed" Content="LStartSpeed:" HorizontalAlignment="Left" Height="27" Margin="35,204,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="TBStartSpeed" HorizontalAlignment="Left" Height="27" Margin="120,204,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 1 &#xA;max: 10" LostFocus="TBStartSpeed_LostFocus"/>
+        <Label x:Name="LHeigth" Content="LHeight: " HorizontalAlignment="Left" Height="27" Margin="35,30,0,0" VerticalAlignment="Top" Width="80" Style="{StaticResource RoundedLabelStyle}"/>
+        <Label x:Name="LWidth" Content="LWidth: " HorizontalAlignment="Left" Height="27" Margin="35,62,0,0" VerticalAlignment="Top" Width="80" Style="{StaticResource RoundedLabelStyle}"/>
+        <TextBox x:Name="TBHeigth" HorizontalAlignment="Left" Height="27" Margin="120,30,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 10 &#xA;max: 100" LostFocus="TBHeigth_LostFocus" Style="{StaticResource RoundedTextBoxStyle}"/>
+        <TextBox x:Name="TBWidth" HorizontalAlignment="Left" Height="27" Margin="120,62,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 10 &#xA;max: 100" LostFocus="TBWidth_LostFocus" Style="{StaticResource RoundedTextBoxStyle}"/>
+        <Label x:Name="LSquareSize" Content="LSquareSize: " HorizontalAlignment="Left" Height="27" Margin="35,130,0,0" VerticalAlignment="Top" Width="80" Style="{StaticResource RoundedLabelStyle}"/>
+        <TextBox x:Name="TBSquareSize" HorizontalAlignment="Left" Height="27" Margin="120,130,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 2 &#xA;max: 40" LostFocus="TBSquareSize_LostFocus" Style="{StaticResource RoundedTextBoxStyle}"/>
+        <Label x:Name="LStartSpeed" Content="LStartSpeed:" HorizontalAlignment="Left" Height="27" Margin="35,204,0,0" VerticalAlignment="Top" Width="80" Style="{StaticResource RoundedLabelStyle}"/>
+        <TextBox x:Name="TBStartSpeed" HorizontalAlignment="Left" Height="27" Margin="120,204,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="80" ToolTip="min: 1 &#xA;max: 10" LostFocus="TBStartSpeed_LostFocus" Style="{StaticResource RoundedTextBoxStyle}"/>
         <Button x:Name="BDefault" Content="BDefault" HorizontalAlignment="Right" Height="40" Margin="0,0,30,80" VerticalAlignment="Bottom" Width="150" Click="BDefault_Click" Style="{StaticResource RoundedButtonStyle}"/>
-
+        <Label x:Name="LGBColor" Content="{x:Static properties:Resources.LGBColor}" HorizontalAlignment="Left" Height="27" Margin="280,30,0,0" VerticalAlignment="Top" Width="80" Style="{StaticResource RoundedLabelStyle}"/>
+        <Label x:Name="LBrickColor" Content="{x:Static properties:Resources.LBrickColor}" HorizontalAlignment="Left" Height="27" Margin="280,62,0,0" VerticalAlignment="Top" Width="80" Style="{StaticResource RoundedLabelStyle}"/>
+        <Label x:Name="LGridColor" Content="{x:Static properties:Resources.LGridColor}" HorizontalAlignment="Left" Height="27" Margin="280,94,0,0" VerticalAlignment="Top" Width="80" Style="{StaticResource RoundedLabelStyle}"/>
+        <ComboBox x:Name="CBGBColor" HorizontalAlignment="Left" Height="27" Margin="380,30,0,0" VerticalAlignment="Top" Width="125" SelectionChanged="CBGBColor_SelectionChanged">
+            <ComboBoxItem x:Name="CBIWhite" Content="{x:Static properties:Resources.White}" Tag="White" Background="White"/>
+            <ComboBoxItem x:Name="CBIGray" Content="{x:Static properties:Resources.Gray}" Tag="Gray" Background="Gray"/>
+            <ComboBoxItem x:Name="CBIYellow" Content="{x:Static properties:Resources.Yellow}" Tag="Yellow" Background="Yellow"/>
+            <ComboBoxItem x:Name="CBIOrange" Content="{x:Static properties:Resources.Orange}" Tag="Orange" Background="Orange"/>
+            <ComboBoxItem x:Name="CBIRed" Content="{x:Static properties:Resources.Red}" Tag="Red" Background="Red"/>
+            <ComboBoxItem x:Name="CBIPink" Content="{x:Static properties:Resources.Pink}" Tag="Pink" Background="Pink"/>
+            <ComboBoxItem x:Name="CBIPurple" Content="{x:Static properties:Resources.Purple}" Tag="Purple" Background="Purple"/>
+            <ComboBoxItem x:Name="CBIBlue" Content="{x:Static properties:Resources.Blue}" Tag="Blue" Background="Blue"/>
+            <ComboBoxItem x:Name="CBIGreen" Content="{x:Static properties:Resources.Green}" Tag="Green" Background="Green"/>
+            <ComboBoxItem x:Name="CBIBlack" Content="{x:Static properties:Resources.Black}" Tag="Black" Background="Black"/>
+        </ComboBox>
+        <ComboBox x:Name="CBBrickColor" HorizontalAlignment="Left" Height="27" Margin="380,62,0,0" VerticalAlignment="Top" Width="125" SelectionChanged="CBBrickColor_SelectionChanged" Background="Aqua">
+            <ComboBoxItem x:Name="CBIWhite1" Content="{x:Static properties:Resources.White}" Tag="White" Background="White"/>
+            <ComboBoxItem x:Name="CBIGray1" Content="{x:Static properties:Resources.Gray}" Tag="Gray" Background="Gray"/>
+            <ComboBoxItem x:Name="CBIYellow1" Content="{x:Static properties:Resources.Yellow}" Tag="Yellow" Background="Yellow"/>
+            <ComboBoxItem x:Name="CBIOrange1" Content="{x:Static properties:Resources.Orange}" Tag="Orange" Background="Orange"/>
+            <ComboBoxItem x:Name="CBIRed1" Content="{x:Static properties:Resources.Red}" Tag="Red" Background="Red"/>
+            <ComboBoxItem x:Name="CBIPink1" Content="{x:Static properties:Resources.Pink}" Tag="Pink" Background="Pink"/>
+            <ComboBoxItem x:Name="CBIPurple1" Content="{x:Static properties:Resources.Purple}" Tag="Purple" Background="Purple"/>
+            <ComboBoxItem x:Name="CBIBlue1" Content="{x:Static properties:Resources.Blue}" Tag="Blue" Background="Blue"/>
+            <ComboBoxItem x:Name="CBIGreen1" Content="{x:Static properties:Resources.Green}" Tag="Green" Background="Green"/>
+            <ComboBoxItem x:Name="CBIBlack1" Content="{x:Static properties:Resources.Black}" Tag="Black" Background="Black"/>
+        </ComboBox>
+        <ComboBox x:Name="CBGridColor" HorizontalAlignment="Left" Height="27" Margin="380,94,0,0" VerticalAlignment="Top" Width="125" SelectionChanged="CBGridColor_SelectionChanged" Background="Aqua">
+            <ComboBoxItem x:Name="CBIWhite2" Content="{x:Static properties:Resources.White}" Tag="White" Background="White"/>
+            <ComboBoxItem x:Name="CBIGray2" Content="{x:Static properties:Resources.Gray}" Tag="Gray" Background="Gray"/>
+            <ComboBoxItem x:Name="CBIYellow2" Content="{x:Static properties:Resources.Yellow}" Tag="Yellow" Background="Yellow"/>
+            <ComboBoxItem x:Name="CBIOrange2" Content="{x:Static properties:Resources.Orange}" Tag="Orange" Background="Orange"/>
+            <ComboBoxItem x:Name="CBIRed2" Content="{x:Static properties:Resources.Red}" Tag="Red" Background="Red"/>
+            <ComboBoxItem x:Name="CBIPink2" Content="{x:Static properties:Resources.Pink}" Tag="Pink" Background="Pink"/>
+            <ComboBoxItem x:Name="CBIPurple2" Content="{x:Static properties:Resources.Purple}" Tag="Purple" Background="Purple"/>
+            <ComboBoxItem x:Name="CBIBlue2" Content="{x:Static properties:Resources.Blue}" Tag="Blue" Background="Blue"/>
+            <ComboBoxItem x:Name="CBIGreen2" Content="{x:Static properties:Resources.Green}" Tag="Green" Background="Green"/>
+            <ComboBoxItem x:Name="CBIBlack2" Content="{x:Static properties:Resources.Black}" Tag="Black" Background="Black"/>
+        </ComboBox>
     </Grid>
 </Window>

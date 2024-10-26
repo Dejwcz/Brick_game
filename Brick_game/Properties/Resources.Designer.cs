@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Brick_game.Properites {
+namespace Brick_game.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace Brick_game.Properites {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace Brick_game.Properites {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brick_game.Properites.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brick_game.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Brick_game.Properites {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,9 @@ namespace Brick_game.Properites {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zpet.
+        ///   Looks up a localized string similar to Zpět.
         /// </summary>
-        internal static string BBack {
+        public static string BBack {
             get {
                 return ResourceManager.GetString("BBack", resourceCulture);
             }
@@ -72,16 +72,34 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Základní nastavení.
         /// </summary>
-        internal static string BDefault {
+        public static string BDefault {
             get {
                 return ResourceManager.GetString("BDefault", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Černá.
+        /// </summary>
+        public static string Black {
+            get {
+                return ResourceManager.GetString("Black", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modrá.
+        /// </summary>
+        public static string Blue {
+            get {
+                return ResourceManager.GetString("Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uložit.
         /// </summary>
-        internal static string BSave {
+        public static string BSave {
             get {
                 return ResourceManager.GetString("BSave", resourceCulture);
             }
@@ -90,7 +108,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Konec.
         /// </summary>
-        internal static string ButtonEnd {
+        public static string ButtonEnd {
             get {
                 return ResourceManager.GetString("ButtonEnd", resourceCulture);
             }
@@ -99,7 +117,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Vlevo.
         /// </summary>
-        internal static string ButtonLeft {
+        public static string ButtonLeft {
             get {
                 return ResourceManager.GetString("ButtonLeft", resourceCulture);
             }
@@ -108,7 +126,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Vpravo.
         /// </summary>
-        internal static string ButtonRight {
+        public static string ButtonRight {
             get {
                 return ResourceManager.GetString("ButtonRight", resourceCulture);
             }
@@ -117,7 +135,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Otoč.
         /// </summary>
-        internal static string ButtonRotate {
+        public static string ButtonRotate {
             get {
                 return ResourceManager.GetString("ButtonRotate", resourceCulture);
             }
@@ -126,7 +144,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
-        internal static string ButtonStart {
+        public static string ButtonStart {
             get {
                 return ResourceManager.GetString("ButtonStart", resourceCulture);
             }
@@ -135,16 +153,25 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Pauza.
         /// </summary>
-        internal static string ButtonStart_pause {
+        public static string ButtonStart_pause {
             get {
                 return ResourceManager.GetString("ButtonStart_pause", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barvy.
+        /// </summary>
+        public static string GBColors {
+            get {
+                return ResourceManager.GetString("GBColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rozměry hrací plochy.
         /// </summary>
-        internal static string GBGameboardSize {
+        public static string GBGameboardSize {
             get {
                 return ResourceManager.GetString("GBGameboardSize", resourceCulture);
             }
@@ -153,7 +180,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Velikost čtverečku.
         /// </summary>
-        internal static string GBSquareSize {
+        public static string GBSquareSize {
             get {
                 return ResourceManager.GetString("GBSquareSize", resourceCulture);
             }
@@ -162,16 +189,34 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Rychlost pádu.
         /// </summary>
-        internal static string GBStartSpeed {
+        public static string GBStartSpeed {
             get {
                 return ResourceManager.GetString("GBStartSpeed", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Šedá.
+        /// </summary>
+        public static string Gray {
+            get {
+                return ResourceManager.GetString("Gray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zelená.
+        /// </summary>
+        public static string Green {
+            get {
+                return ResourceManager.GetString("Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Konec hry.
         /// </summary>
-        internal static string LabelGameOver {
+        public static string LabelGameOver {
             get {
                 return ResourceManager.GetString("LabelGameOver", resourceCulture);
             }
@@ -180,16 +225,43 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Skóre: .
         /// </summary>
-        internal static string LabelScore {
+        public static string LabelScore {
             get {
                 return ResourceManager.GetString("LabelScore", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kostky:.
+        /// </summary>
+        public static string LBrickColor {
+            get {
+                return ResourceManager.GetString("LBrickColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hrací plocha:.
+        /// </summary>
+        public static string LGBColor {
+            get {
+                return ResourceManager.GetString("LGBColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mřížka:.
+        /// </summary>
+        public static string LGridColor {
+            get {
+                return ResourceManager.GetString("LGridColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Výška:.
         /// </summary>
-        internal static string LHeight {
+        public static string LHeight {
             get {
                 return ResourceManager.GetString("LHeight", resourceCulture);
             }
@@ -198,7 +270,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Velikost: .
         /// </summary>
-        internal static string LSquareSize {
+        public static string LSquareSize {
             get {
                 return ResourceManager.GetString("LSquareSize", resourceCulture);
             }
@@ -207,7 +279,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Rychlost:.
         /// </summary>
-        internal static string LStartSpeed {
+        public static string LStartSpeed {
             get {
                 return ResourceManager.GetString("LStartSpeed", resourceCulture);
             }
@@ -216,16 +288,43 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Šířka:.
         /// </summary>
-        internal static string LWidth {
+        public static string LWidth {
             get {
                 return ResourceManager.GetString("LWidth", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nemáte nastavenou barvu. Nahrát standartní barvy?.
+        /// </summary>
+        public static string MBMissingColor {
+            get {
+                return ResourceManager.GetString("MBMissingColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chybí barva.
+        /// </summary>
+        public static string MBMissingColorHead {
+            get {
+                return ResourceManager.GetString("MBMissingColorHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hrací plocha a kostky nesmí mít stejnou barvu!.
+        /// </summary>
+        public static string MBSameColors {
+            get {
+                return ResourceManager.GetString("MBSameColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Konec.
         /// </summary>
-        internal static string MIEnd {
+        public static string MIEnd {
             get {
                 return ResourceManager.GetString("MIEnd", resourceCulture);
             }
@@ -234,7 +333,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to _Hra.
         /// </summary>
-        internal static string MIGame {
+        public static string MIGame {
             get {
                 return ResourceManager.GetString("MIGame", resourceCulture);
             }
@@ -243,7 +342,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Ná_pověda.
         /// </summary>
-        internal static string MIHelp {
+        public static string MIHelp {
             get {
                 return ResourceManager.GetString("MIHelp", resourceCulture);
             }
@@ -252,7 +351,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to Použij šipky (Nahoru pro otočení).
         /// </summary>
-        internal static string MIHelpMessage {
+        public static string MIHelpMessage {
             get {
                 return ResourceManager.GetString("MIHelpMessage", resourceCulture);
             }
@@ -261,7 +360,7 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to _Nová hra.
         /// </summary>
-        internal static string MINewGame {
+        public static string MINewGame {
             get {
                 return ResourceManager.GetString("MINewGame", resourceCulture);
             }
@@ -270,18 +369,72 @@ namespace Brick_game.Properites {
         /// <summary>
         ///   Looks up a localized string similar to N_astavení.
         /// </summary>
-        internal static string MISettings {
+        public static string MISettings {
             get {
                 return ResourceManager.GetString("MISettings", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oranžová.
+        /// </summary>
+        public static string Orange {
+            get {
+                return ResourceManager.GetString("Orange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Růžová.
+        /// </summary>
+        public static string Pink {
+            get {
+                return ResourceManager.GetString("Pink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fialová.
+        /// </summary>
+        public static string Purple {
+            get {
+                return ResourceManager.GetString("Purple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Červená.
+        /// </summary>
+        public static string Red {
+            get {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bílá.
+        /// </summary>
+        public static string White {
+            get {
+                return ResourceManager.GetString("White", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nastavení hry.
         /// </summary>
-        internal static string WSettingsTitle {
+        public static string WSettingsTitle {
             get {
                 return ResourceManager.GetString("WSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Žlutá.
+        /// </summary>
+        public static string Yellow {
+            get {
+                return ResourceManager.GetString("Yellow", resourceCulture);
             }
         }
     }

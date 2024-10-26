@@ -118,78 +118,129 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BBack" xml:space="preserve">
-    <value>Zpet</value>
+    <value>Back</value>
   </data>
   <data name="BDefault" xml:space="preserve">
-    <value>Základní nastavení</value>
+    <value>Default values</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
   </data>
   <data name="BSave" xml:space="preserve">
-    <value>Uložit</value>
+    <value>Save</value>
   </data>
   <data name="ButtonEnd" xml:space="preserve">
-    <value>Konec</value>
+    <value>Exit</value>
   </data>
   <data name="ButtonLeft" xml:space="preserve">
-    <value>Vlevo</value>
+    <value>Left</value>
   </data>
   <data name="ButtonRight" xml:space="preserve">
-    <value>Vpravo</value>
+    <value>Right</value>
   </data>
   <data name="ButtonRotate" xml:space="preserve">
-    <value>Otoč</value>
+    <value>Rotate</value>
   </data>
   <data name="ButtonStart" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="ButtonStart_pause" xml:space="preserve">
-    <value>Pauza</value>
+    <value>Pause</value>
+  </data>
+  <data name="GBColors" xml:space="preserve">
+    <value>Colors</value>
   </data>
   <data name="GBGameboardSize" xml:space="preserve">
-    <value>Rozměry hrací plochy</value>
+    <value>Gameboard size</value>
   </data>
   <data name="GBSquareSize" xml:space="preserve">
-    <value>Velikost čtverečku</value>
+    <value>Square size</value>
   </data>
   <data name="GBStartSpeed" xml:space="preserve">
-    <value>Rychlost pádu</value>
+    <value>Falling speed</value>
+  </data>
+  <data name="Gray" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
   </data>
   <data name="LabelGameOver" xml:space="preserve">
-    <value>Konec hry</value>
+    <value>Game over</value>
   </data>
   <data name="LabelScore" xml:space="preserve">
-    <value>Skóre: </value>
+    <value>Score: </value>
+  </data>
+  <data name="LBrickColor" xml:space="preserve">
+    <value>Brick:</value>
+  </data>
+  <data name="LGBColor" xml:space="preserve">
+    <value>Background: </value>
+  </data>
+  <data name="LGridColor" xml:space="preserve">
+    <value>Grid:</value>
   </data>
   <data name="LHeight" xml:space="preserve">
-    <value>Výška:</value>
+    <value>Height: </value>
   </data>
   <data name="LSquareSize" xml:space="preserve">
-    <value>Velikost: </value>
+    <value>Size: </value>
   </data>
   <data name="LStartSpeed" xml:space="preserve">
-    <value>Rychlost:</value>
+    <value>Speed: </value>
   </data>
   <data name="LWidth" xml:space="preserve">
-    <value>Šířka:</value>
+    <value>Width:</value>
+  </data>
+  <data name="MBMissingColor" xml:space="preserve">
+    <value>Color is not set. Load default colors?</value>
+  </data>
+  <data name="MBMissingColorHead" xml:space="preserve">
+    <value>Color is missing</value>
+  </data>
+  <data name="MBSameColors" xml:space="preserve">
+    <value>The background and bricks must not be the same color!</value>
   </data>
   <data name="MIEnd" xml:space="preserve">
-    <value>_Konec</value>
+    <value>_Exit</value>
   </data>
   <data name="MIGame" xml:space="preserve">
-    <value>_Hra</value>
+    <value>_Game</value>
   </data>
   <data name="MIHelp" xml:space="preserve">
-    <value>Ná_pověda</value>
+    <value>_Help</value>
   </data>
   <data name="MIHelpMessage" xml:space="preserve">
-    <value>Použij šipky (Nahoru pro otočení)</value>
+    <value>Use arrow keys (Up to rotate)</value>
   </data>
   <data name="MINewGame" xml:space="preserve">
-    <value>_Nová hra</value>
+    <value>_New game</value>
   </data>
   <data name="MISettings" xml:space="preserve">
-    <value>N_astavení</value>
+    <value>_Settings</value>
+  </data>
+  <data name="Orange" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="Pink" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="Purple" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
   </data>
   <data name="WSettingsTitle" xml:space="preserve">
-    <value>Nastavení hry</value>
+    <value>Game settings</value>
+  </data>
+  <data name="Yellow" xml:space="preserve">
+    <value>Yellow</value>
   </data>
 </root>
