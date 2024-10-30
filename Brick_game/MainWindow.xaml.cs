@@ -13,6 +13,7 @@ using System.Windows.Threading;
 using System.Globalization;
 using TXTS = Brick_game.Properties.Resources;
 using System.IO;
+using Brick_game;
 
 namespace BrickGame; 
 /// <summary>
@@ -47,10 +48,17 @@ public partial class MainWindow : Window {
     private DispatcherTimer timer;
     private string currentDirectory = Directory.GetCurrentDirectory();
     private string settingFile = Directory.GetCurrentDirectory() + "\\text.txt";
+    private int countOfHighscores = 5;
+    private HighScores highScores;
+    private string highScoresFile = "highscores.xml";
 
     public MainWindow() {
         InitializeComponent();
-        SetSettings(LoadSetting());
+        SetSettings(LoadSetting());                                                                 //Load and set colors and parameters for board and game
+
+        highScores = HighScores.LoadFromFile(highScoresFile);                                       //Load high scores from file
+        SetHighScores(highScores.GetXFirstHighScoresToString(countOfHighscores));                   //Set high scores to Labels
+       
         SetUI();
         //for (int i = 120; i < 120 + columns; i++) { squares[i].Background = bBrickColor; }      //Test line
     }
@@ -91,8 +99,9 @@ public partial class MainWindow : Window {
         MainContainer.Children.Add(gameField);
         MainContainer.Height = gameField.Height;
         MainContainer.Width = gameField.Width;
+
         WTetris.ResizeMode = ResizeMode.NoResize;
-        WTetris.Height = gameField.Height + 120 < 300 ? 300 : gameField.Height + 120;
+        WTetris.Height = gameField.Height + 120 < 450 ? 450 : gameField.Height + 120;
         WTetris.Width = gameField.Width + 310 < 450 ? 450 : gameField.Width + 310;
         LGameOver.Margin = new Thickness(35 + (gameField.Width - LGameOver.Width) / 2, (gameField.Height / 2), 0, 0);
         LGameOver.Visibility = Visibility.Collapsed;
@@ -200,12 +209,27 @@ public partial class MainWindow : Window {
         else {                                                                                           //If the shape is down, new starts. 
             currentShape = CreateNewShape();
             if (!CanPlaceNewShape(currentShape)) {                                                       //If there is no room for the new, game ends
-                foreach (Brick b in currentShape) { squares[b.Pos].Background = bBrickColor; }
-                timer.Stop();
-                gameIsOn = false;
-                LGameOver.Visibility = Visibility.Visible;
+                GameOver();
             }
         }
+    }
+    private void GameOver() {
+        foreach (Brick b in currentShape) { squares[b.Pos].Background = bBrickColor; }
+        timer.Stop();
+        gameIsOn = false;
+        LGameOver.Visibility = Visibility.Visible;              //Shows game over
+        if (score > 0) {                                        //If is any score saves it and actualizes top game scores
+            EnterNewScore();
+            SetHighScores(highScores.GetXFirstHighScoresToString(countOfHighscores));
+        }
+    }
+    private void EnterNewScore() {                  //Opens window to enter new name and save record to highscores records
+        WEnterName wEnterName = new WEnterName();
+        wEnterName.Owner = this;
+        wEnterName.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        wEnterName.ShowDialog();
+        highScores.AddRecord(new Record(wEnterName.TBEnterName.Text, score));
+        wEnterName.Close();
     }
     private void MoveRight(Brick[] shape) {
         bool canMove = true;
@@ -381,8 +405,12 @@ public partial class MainWindow : Window {
         MIEnd.Header = TXTS.MIEnd;
         MINewGame.Header = TXTS.MINewGame;
         MISettings.Header = TXTS.MISettings;
+        MIOptions.Header = TXTS.MIOptions;
+        MIResetScores.Header = TXTS.MIResetScores;
+        GBTopScores.Header = TXTS.GBTopScores;
         if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
         else { BStart.Content = TXTS.ButtonStart;}
+
     }
     private string[] LoadSetting() {
         StreamReader sr;
@@ -391,7 +419,7 @@ public partial class MainWindow : Window {
         }
         catch (FileNotFoundException) {
             StreamWriter sw = new StreamWriter(settingFile);
-            sw.WriteLine("20,10,20,5,");
+            sw.WriteLine("20,10,20,5,#FF0000FF,#FFFF0000,#FF000000");
             sw.Close();
             sr = new StreamReader(settingFile);
         }
@@ -409,6 +437,64 @@ public partial class MainWindow : Window {
         bGBColor = (Brush)new BrushConverter().ConvertFromString(settings[4]);
         bBrickColor = (Brush)new BrushConverter().ConvertFromString(settings[5]);
         bGridColor = (Brush)new BrushConverter().ConvertFromString(settings[6]);
+
+    }
+    /// <summary>
+    /// Set high scores values to corresponding labels
+    /// </summary>
+    /// <param name="highScores"></param>
+    private void SetHighScores(string[] highScores) {
+        Label[] lHighScore = new Label[] { LHighSore1, LHighSore2, LHighSore3, LHighSore4, LHighSore5 };
+        if (highScores.Length == 0) {
+            int index = 1;
+            foreach (Label label in lHighScore) {
+                label.Content = $"{index++}. ";
+            }
+        }
+        else {
+            for (int i = 0; i < lHighScore.Length; i++) {
+                if (i >= highScores.Length) lHighScore[i].Content = $"{i+1}. ";
+                else { lHighScore[i].Content = highScores[i]; }
+            }
+        }
+    }
+    private void WTetris_Loaded(object sender, RoutedEventArgs e) {
+        BLeft.Content = TXTS.ButtonLeft;
+        BRight.Content = TXTS.ButtonRight;
+        BRotate.Content = TXTS.ButtonRotate;
+        LScore.Content = TXTS.LabelScore + score.ToString();
+        MIGame.Header = TXTS.MIGame;
+        MIHelp.Header = TXTS.MIHelp;
+        LGameOver.Content = TXTS.LabelGameOver;
+        MIEnd.Header = TXTS.MIEnd;
+        MINewGame.Header = TXTS.MINewGame;
+        MISettings.Header = TXTS.MISettings; 
+        if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
+        else { BStart.Content = TXTS.ButtonStart; }
+    }
+    private void WTetris_KeyDown(object sender, KeyEventArgs e) {
+        if (e.Key == Key.Left) { if (timer != null && timer.IsEnabled) MoveLeft(currentShape); }
+        if (e.Key == Key.Right) { if (timer != null && timer.IsEnabled) MoveRight(currentShape); }
+        if (e.Key == Key.Up) { if (timer != null && timer.IsEnabled) RotateShape(currentShape); }
+        if (e.Key == Key.Space) {
+            if (!gameIsOn && isClearBoard) {
+                GameOn();
+                gameIsOn = true;
+                BStart.Content = TXTS.ButtonStart_pause;
+            }
+            else if (timer != null && timer.IsEnabled && gameIsOn) { timer.Stop(); BStart.Content = TXTS.ButtonStart; }
+            else if (timer != null && !timer.IsEnabled && gameIsOn) { timer.Start(); BStart.Content = TXTS.ButtonStart_pause; }
+        }
+        if (e.Key == Key.N) {
+            if (timer != null && !timer.IsEnabled) {
+                LGameOver.Visibility = Visibility.Collapsed;
+                NewGame();
+                currentShape = CreateNewShape();
+                BStart.Content = TXTS.ButtonStart;
+            }
+        }
+        if (e.Key == Key.Down) { if (timer != null && timer.IsEnabled) MoveDown(currentShape); }
+        //if (e.Key == Key.T) { MessageBox.Show(Directory.GetCurrentDirectory()); }  //test key
     }
     private void BStart_Click(object sender, RoutedEventArgs e) {
         if (!gameIsOn && isClearBoard) {
@@ -425,39 +511,8 @@ public partial class MainWindow : Window {
     private void BRight_Click(object sender, RoutedEventArgs e) {
         if (timer != null && timer.IsEnabled) MoveRight(currentShape);
     }
-    private void WTetris_KeyDown(object sender, KeyEventArgs e) {
-        if (e.Key == Key.Left) { if (timer != null && timer.IsEnabled) MoveLeft(currentShape); }
-        if (e.Key == Key.Right) { if (timer != null && timer.IsEnabled) MoveRight(currentShape); }
-        if (e.Key == Key.Up) { if (timer != null && timer.IsEnabled) RotateShape(currentShape); }
-        if (e.Key == Key.Space) {
-            if (!gameIsOn && isClearBoard) {
-                GameOn();
-                gameIsOn = true;
-                BStart.Content = TXTS.ButtonStart_pause;
-            }
-            else if (timer != null && timer.IsEnabled && gameIsOn) { timer.Stop(); BStart.Content = TXTS.ButtonStart; }
-            else if (timer != null && !timer.IsEnabled && gameIsOn) { timer.Start(); BStart.Content = TXTS.ButtonStart_pause; }
-        }
-        if (e.Key == Key.N) { NewGame(); currentShape = CreateNewShape(); }
-        if (e.Key == Key.Down) { if (timer != null && timer.IsEnabled) MoveDown(currentShape); }
-        //if (e.Key == Key.T) { MessageBox.Show(Directory.GetCurrentDirectory()); }  //test key
-    }
     private void BRotate_Click(object sender, RoutedEventArgs e) {
         if (timer != null && timer.IsEnabled) RotateShape(currentShape);
-    }
-    private void WTetris_Loaded(object sender, RoutedEventArgs e) {
-        BLeft.Content = TXTS.ButtonLeft;
-        BRight.Content = TXTS.ButtonRight;
-        BRotate.Content = TXTS.ButtonRotate;
-        LScore.Content = TXTS.LabelScore + score.ToString();
-        MIGame.Header = TXTS.MIGame;
-        MIHelp.Header = TXTS.MIHelp;
-        LGameOver.Content = TXTS.LabelGameOver;
-        MIEnd.Header = TXTS.MIEnd;
-        MINewGame.Header = TXTS.MINewGame;
-        MISettings.Header = TXTS.MISettings; 
-        if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
-        else { BStart.Content = TXTS.ButtonStart; }
     }
     private void CBLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
         if (BLeft != null) LanguageChange();
@@ -490,5 +545,15 @@ public partial class MainWindow : Window {
     }
     private void MIHelp_Click(object sender, RoutedEventArgs e) {
         MessageBox.Show(WTetris, TXTS.MIHelpMessage);
+    }
+    private void MIResetScores_Click(object sender, RoutedEventArgs e) {
+        MessageBoxResult result = MessageBox.Show(TXTS.MBResetScores, TXTS.MBResetScoresCaption, MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+        if (result == MessageBoxResult.OK) {
+            highScores = new HighScores();
+            SetHighScores(highScores.GetXFirstHighScoresToString(countOfHighscores));
+        }
+    }
+    private void WTetris_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+        highScores.SaveToFile(highScoresFile);
     }
 }

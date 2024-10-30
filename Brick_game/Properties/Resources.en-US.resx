@@ -162,6 +162,9 @@
   <data name="GBStartSpeed" xml:space="preserve">
     <value>Falling speed</value>
   </data>
+  <data name="GBTopScores" xml:space="preserve">
+    <value>Top 5 scores</value>
+  </data>
   <data name="Gray" xml:space="preserve">
     <value>Gray</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="LBrickColor" xml:space="preserve">
     <value>Brick:</value>
+  </data>
+  <data name="LEnterName" xml:space="preserve">
+    <value>Enter name: </value>
   </data>
   <data name="LGBColor" xml:space="preserve">
     <value>Background: </value>
@@ -201,6 +207,12 @@
   <data name="MBMissingColorHead" xml:space="preserve">
     <value>Color is missing</value>
   </data>
+  <data name="MBResetScores" xml:space="preserve">
+    <value>Are you sure you want to delete all high scores?</value>
+  </data>
+  <data name="MBResetScoresCaption" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
   <data name="MBSameColors" xml:space="preserve">
     <value>The background and bricks must not be the same color!</value>
   </data>
@@ -219,6 +231,12 @@
   <data name="MINewGame" xml:space="preserve">
     <value>_New game</value>
   </data>
+  <data name="MIOptions" xml:space="preserve">
+    <value>_Options</value>
+  </data>
+  <data name="MIResetScores" xml:space="preserve">
+    <value>Reset high scores</value>
+  </data>
   <data name="MISettings" xml:space="preserve">
     <value>_Settings</value>
   </data>
@@ -233,6 +251,9 @@
   </data>
   <data name="Red" xml:space="preserve">
     <value>Red</value>
+  </data>
+  <data name="WEnterNameTitle" xml:space="preserve">
+    <value>New score</value>
   </data>
   <data name="White" xml:space="preserve">
     <value>White</value>

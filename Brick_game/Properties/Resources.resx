@@ -162,6 +162,9 @@
   <data name="GBStartSpeed" xml:space="preserve">
     <value>Rychlost pádu</value>
   </data>
+  <data name="GBTopScores" xml:space="preserve">
+    <value>Nejlepších 5</value>
+  </data>
   <data name="Gray" xml:space="preserve">
     <value>Šedá</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="LBrickColor" xml:space="preserve">
     <value>Kostky:</value>
+  </data>
+  <data name="LEnterName" xml:space="preserve">
+    <value>Zadej jméno: </value>
   </data>
   <data name="LGBColor" xml:space="preserve">
     <value>Hrací plocha:</value>
@@ -201,6 +207,12 @@
   <data name="MBMissingColorHead" xml:space="preserve">
     <value>Chybí barva</value>
   </data>
+  <data name="MBResetScores" xml:space="preserve">
+    <value>Opravdu chcete smazat všechna nejvyšší skóre?</value>
+  </data>
+  <data name="MBResetScoresCaption" xml:space="preserve">
+    <value>Opravdu?</value>
+  </data>
   <data name="MBSameColors" xml:space="preserve">
     <value>Hrací plocha a kostky nesmí mít stejnou barvu!</value>
   </data>
@@ -219,6 +231,12 @@
   <data name="MINewGame" xml:space="preserve">
     <value>_Nová hra</value>
   </data>
+  <data name="MIOptions" xml:space="preserve">
+    <value>_Možnosti</value>
+  </data>
+  <data name="MIResetScores" xml:space="preserve">
+    <value>Vymazat nejvyšší skóre</value>
+  </data>
   <data name="MISettings" xml:space="preserve">
     <value>N_astavení</value>
   </data>
@@ -233,6 +251,9 @@
   </data>
   <data name="Red" xml:space="preserve">
     <value>Červená</value>
+  </data>
+  <data name="WEnterNameTitle" xml:space="preserve">
+    <value>Nové skóre</value>
   </data>
   <data name="White" xml:space="preserve">
     <value>Bílá</value>

@@ -196,6 +196,15 @@ namespace Brick_game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nejlepších 5.
+        /// </summary>
+        public static string GBTopScores {
+            get {
+                return ResourceManager.GetString("GBTopScores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Šedá.
         /// </summary>
         public static string Gray {
@@ -237,6 +246,15 @@ namespace Brick_game.Properties {
         public static string LBrickColor {
             get {
                 return ResourceManager.GetString("LBrickColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zadej jméno: .
+        /// </summary>
+        public static string LEnterName {
+            get {
+                return ResourceManager.GetString("LEnterName", resourceCulture);
             }
         }
         
@@ -313,6 +331,24 @@ namespace Brick_game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opravdu chcete smazat všechna nejvyšší skóre?.
+        /// </summary>
+        public static string MBResetScores {
+            get {
+                return ResourceManager.GetString("MBResetScores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opravdu?.
+        /// </summary>
+        public static string MBResetScoresCaption {
+            get {
+                return ResourceManager.GetString("MBResetScoresCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hrací plocha a kostky nesmí mít stejnou barvu!.
         /// </summary>
         public static string MBSameColors {
@@ -367,6 +403,24 @@ namespace Brick_game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Možnosti.
+        /// </summary>
+        public static string MIOptions {
+            get {
+                return ResourceManager.GetString("MIOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vymazat nejvyšší skóre.
+        /// </summary>
+        public static string MIResetScores {
+            get {
+                return ResourceManager.GetString("MIResetScores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N_astavení.
         /// </summary>
         public static string MISettings {
@@ -408,6 +462,15 @@ namespace Brick_game.Properties {
         public static string Red {
             get {
                 return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nové skóre.
+        /// </summary>
+        public static string WEnterNameTitle {
+            get {
+                return ResourceManager.GetString("WEnterNameTitle", resourceCulture);
             }
         }
         

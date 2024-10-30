@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BrickGame"
+        xmlns:properties="clr-namespace:Brick_game.Properties"
         mc:Ignorable="d"
-        Title="Brick game" Height="531" Width="509" KeyDown="WTetris_KeyDown" Loaded="WTetris_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Brick game" Height="480" Width="509" KeyDown="WTetris_KeyDown" Loaded="WTetris_Loaded" WindowStartupLocation="CenterScreen" Closing="WTetris_Closing">
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Template">
@@ -23,14 +24,18 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <GroupBox x:Name="GBTopScores" HorizontalAlignment="Right" Height="195" Header="{x:Static properties:Resources.GBTopScores}" Margin="0,85,20,0" VerticalAlignment="Top" Width="220" FontWeight="Bold" BorderThickness="3"/>
         <Menu x:Name="MMenu" VerticalAlignment="Top" Background="White">
-            <MenuItem x:Name="MIGame" Header="_Hra">
-                <MenuItem x:Name="MINewGame" Header="_Nová hra" Click="MINewGame_Click"/>
-                <MenuItem x:Name="MISettings" Header="_Nastavení" Click="MISettings_Click"/>
+            <MenuItem x:Name="MIGame" Header="{x:Static properties:Resources.MIGame}">
+                <MenuItem x:Name="MINewGame" Header="{x:Static properties:Resources.MINewGame}" Click="MINewGame_Click"/>
+                <MenuItem x:Name="MISettings" Header="{x:Static properties:Resources.MISettings}" Click="MISettings_Click"/>
                 <Separator/>
-                <MenuItem x:Name="MIEnd" Header="_Konec" Click="MIEnd_Click"/>
+                <MenuItem x:Name="MIEnd" Header="{x:Static properties:Resources.MIEnd}" Click="MIEnd_Click"/>
             </MenuItem>
-            <MenuItem x:Name="MIHelp" Header="Nápověda" Click="MIHelp_Click"/>
+            <MenuItem x:Name="MIOptions" Header="{x:Static properties:Resources.MIOptions}">
+                <MenuItem x:Name="MIResetScores" Header="{x:Static properties:Resources.MIResetScores}" Click="MIResetScores_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="MIHelp" Header="{x:Static properties:Resources.MIHelp}" Click="MIHelp_Click"/>
         </Menu>
         <StatusBar x:Name="SBBar" VerticalAlignment="Bottom">
             <StatusBarItem HorizontalAlignment="Right">
@@ -40,13 +45,17 @@
                 </ComboBox>
             </StatusBarItem>
         </StatusBar>
-        <StackPanel x:Name="MainContainer" Orientation="Vertical" Margin="30,30,0,0" Width="224" Height="441" HorizontalAlignment="Left" VerticalAlignment="Top">
-        </StackPanel>
+        <StackPanel x:Name="MainContainer" Orientation="Vertical" Margin="30,30,0,0" Width="224" Height="441" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="BStart" Content="Start" HorizontalAlignment="Right" Height="40" Margin="0,0,80,40" VerticalAlignment="Bottom" Width="100" Click="BStart_Click" Focusable="False" Style="{StaticResource RoundedButtonStyle}"/>
         <Button x:Name="BLeft" Content="BLeft" HorizontalAlignment="Right" Height="40" Margin="0,0,180,100" Width="60" Click="BLeft_Click" Focusable="False" VerticalAlignment="Bottom" Style="{StaticResource RoundedButtonStyle}"/>
         <Button x:Name="BRight" Content="BRight" Height="40" Width="60" Click="BRight_Click" Focusable="False" HorizontalAlignment="Right" Margin="0,0,20,100" VerticalAlignment="Bottom" Style="{StaticResource RoundedButtonStyle}"/>
         <Button x:Name="BRotate" Content="Rotate" HorizontalAlignment="Right" Height="40" Margin="0,0,100,100" VerticalAlignment="Bottom" Width="60" Click="BRotate_Click" Focusable="False" Style="{StaticResource RoundedButtonStyle}"/>
-        <Label x:Name="LScore" Content="Score: 0" HorizontalAlignment="Right" Height="40" Margin="0,85,20,0" VerticalAlignment="Top" Width="200" FontSize="20" FontWeight="Bold" />
+        <Label x:Name="LScore" Content="Score: 0" HorizontalAlignment="Right" Height="40" Margin="0,30,40,0" VerticalAlignment="Top" Width="200" FontSize="20" FontWeight="Bold" />
         <Label x:Name="LGameOver" Content="Game Over" HorizontalAlignment="Left" Margin="40,250,0,0" VerticalAlignment="Top" Height="50" Width="170" FontSize="30" FontWeight="Bold"/>
+        <Label x:Name="LHighSore1" Content="Label" HorizontalAlignment="Right" Height="30" Margin="0,100,20,0" VerticalAlignment="Top" Width="220" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="LHighSore2" Content="Label" HorizontalAlignment="Right" Height="30" Margin="0,135,20,0" VerticalAlignment="Top" Width="220" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="LHighSore3" Content="Label" HorizontalAlignment="Right" Height="30" Margin="0,170,20,0" VerticalAlignment="Top" Width="220" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="LHighSore4" Content="Label" HorizontalAlignment="Right" Height="30" Margin="0,205,20,0" VerticalAlignment="Top" Width="220" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="LHighSore5" Content="12345678901234567890123456" HorizontalAlignment="Right" Height="30" Margin="0,240,20,0" VerticalAlignment="Top" Width="220" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontWeight="Bold"/>
     </Grid>
 </Window>
