@@ -150,11 +150,17 @@
   <data name="ButtonStart_pause" xml:space="preserve">
     <value>Pauza</value>
   </data>
+  <data name="CBMusic" xml:space="preserve">
+    <value>Hrát při spuštění</value>
+  </data>
   <data name="GBColors" xml:space="preserve">
     <value>Barvy</value>
   </data>
   <data name="GBGameboardSize" xml:space="preserve">
     <value>Rozměry hrací plochy</value>
+  </data>
+  <data name="GBMusic" xml:space="preserve">
+    <value>Hudba</value>
   </data>
   <data name="GBSquareSize" xml:space="preserve">
     <value>Velikost čtverečku</value>
@@ -228,6 +234,12 @@
   <data name="MIHelpMessage" xml:space="preserve">
     <value>Použij šipky (Nahoru pro otočení)</value>
   </data>
+  <data name="MIHighScores" xml:space="preserve">
+    <value>Nejvyšší skóre</value>
+  </data>
+  <data name="MIMusic" xml:space="preserve">
+    <value>Hudba</value>
+  </data>
   <data name="MINewGame" xml:space="preserve">
     <value>_Nová hra</value>
   </data>
@@ -239,6 +251,9 @@
   </data>
   <data name="MISettings" xml:space="preserve">
     <value>N_astavení</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Jméno</value>
   </data>
   <data name="Orange" xml:space="preserve">
     <value>Oranžová</value>
@@ -252,8 +267,17 @@
   <data name="Red" xml:space="preserve">
     <value>Červená</value>
   </data>
+  <data name="Score" xml:space="preserve">
+    <value>Skóre</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Datum a čas</value>
+  </data>
   <data name="WEnterNameTitle" xml:space="preserve">
     <value>Nové skóre</value>
+  </data>
+  <data name="WHighScores" xml:space="preserve">
+    <value>Nejvyšší skóre</value>
   </data>
   <data name="White" xml:space="preserve">
     <value>Bílá</value>

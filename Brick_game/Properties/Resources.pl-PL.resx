@@ -118,174 +118,174 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BBack" xml:space="preserve">
-    <value>Back</value>
+    <value>Wstecz</value>
   </data>
   <data name="BDefault" xml:space="preserve">
-    <value>Default values</value>
+    <value>Ustawienia domyślne</value>
   </data>
   <data name="Black" xml:space="preserve">
-    <value>Black</value>
+    <value>Czarny</value>
   </data>
   <data name="Blue" xml:space="preserve">
-    <value>Blue</value>
+    <value>Niebieski</value>
   </data>
   <data name="BSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
   </data>
   <data name="ButtonEnd" xml:space="preserve">
-    <value>Exit</value>
+    <value>Koniec</value>
   </data>
   <data name="ButtonLeft" xml:space="preserve">
-    <value>Left</value>
+    <value>Lewo</value>
   </data>
   <data name="ButtonRight" xml:space="preserve">
-    <value>Right</value>
+    <value>Prawo</value>
   </data>
   <data name="ButtonRotate" xml:space="preserve">
-    <value>Rotate</value>
+    <value>Obróć</value>
   </data>
   <data name="ButtonStart" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="ButtonStart_pause" xml:space="preserve">
-    <value>Pause</value>
+    <value>Pauza</value>
   </data>
   <data name="CBMusic" xml:space="preserve">
-    <value>Play on startup</value>
+    <value>Odtwarzaj przy starcie</value>
   </data>
   <data name="GBColors" xml:space="preserve">
-    <value>Colors</value>
+    <value>Kolory</value>
   </data>
   <data name="GBGameboardSize" xml:space="preserve">
-    <value>Gameboard size</value>
+    <value>Rozmiar planszy</value>
   </data>
   <data name="GBMusic" xml:space="preserve">
-    <value>Music</value>
+    <value>Muzyka</value>
   </data>
   <data name="GBSquareSize" xml:space="preserve">
-    <value>Square size</value>
+    <value>Wielkość kwadratu</value>
   </data>
   <data name="GBStartSpeed" xml:space="preserve">
-    <value>Falling speed</value>
+    <value>Prędkość spadania</value>
   </data>
   <data name="GBTopScores" xml:space="preserve">
-    <value>Top 5 scores</value>
+    <value>Top 5</value>
   </data>
   <data name="Gray" xml:space="preserve">
-    <value>Gray</value>
+    <value>Szary</value>
   </data>
   <data name="Green" xml:space="preserve">
-    <value>Green</value>
+    <value>Zielony</value>
   </data>
   <data name="LabelGameOver" xml:space="preserve">
-    <value>Game over</value>
+    <value>Koniec gry</value>
   </data>
   <data name="LabelScore" xml:space="preserve">
-    <value>Score: </value>
+    <value>Wynik: </value>
   </data>
   <data name="LBrickColor" xml:space="preserve">
-    <value>Brick:</value>
+    <value>Klocki:</value>
   </data>
   <data name="LEnterName" xml:space="preserve">
-    <value>Enter name: </value>
+    <value>Wpisz imię: </value>
   </data>
   <data name="LGBColor" xml:space="preserve">
-    <value>Background: </value>
+    <value>Plansza:</value>
   </data>
   <data name="LGridColor" xml:space="preserve">
-    <value>Grid:</value>
+    <value>Siatka:</value>
   </data>
   <data name="LHeight" xml:space="preserve">
-    <value>Height: </value>
+    <value>Wysokość:</value>
   </data>
   <data name="LSquareSize" xml:space="preserve">
-    <value>Size: </value>
+    <value>Wielkość: </value>
   </data>
   <data name="LStartSpeed" xml:space="preserve">
-    <value>Speed: </value>
+    <value>Prędkość:</value>
   </data>
   <data name="LWidth" xml:space="preserve">
-    <value>Width:</value>
+    <value>Szerokość:</value>
   </data>
   <data name="MBMissingColor" xml:space="preserve">
-    <value>Color is not set. Load default colors?</value>
+    <value>Nie ustawiono koloru. Załadować domyślne kolory?</value>
   </data>
   <data name="MBMissingColorHead" xml:space="preserve">
-    <value>Color is missing</value>
+    <value>Brak koloru</value>
   </data>
   <data name="MBResetScores" xml:space="preserve">
-    <value>Are you sure you want to delete all high scores?</value>
+    <value>Czy na pewno chcesz usunąć wszystkie najwyższe wyniki?</value>
   </data>
   <data name="MBResetScoresCaption" xml:space="preserve">
-    <value>Are you sure?</value>
+    <value>Naprawdę?</value>
   </data>
   <data name="MBSameColors" xml:space="preserve">
-    <value>The background and bricks must not be the same color!</value>
+    <value>Plansza i klocki nie mogą mieć tego samego koloru!</value>
   </data>
   <data name="MIEnd" xml:space="preserve">
-    <value>_Exit</value>
+    <value>_Koniec</value>
   </data>
   <data name="MIGame" xml:space="preserve">
-    <value>_Game</value>
+    <value>_Gra</value>
   </data>
   <data name="MIHelp" xml:space="preserve">
-    <value>_Help</value>
+    <value>_Pomoc</value>
   </data>
   <data name="MIHelpMessage" xml:space="preserve">
-    <value>Use arrow keys (Up to rotate)</value>
+    <value>Użyj strzałek (góra, aby obrócić)</value>
   </data>
   <data name="MIHighScores" xml:space="preserve">
-    <value>High scores</value>
+    <value>Najwyższe wyniki</value>
   </data>
   <data name="MIMusic" xml:space="preserve">
-    <value>Music</value>
+    <value>Muzyka</value>
   </data>
   <data name="MINewGame" xml:space="preserve">
-    <value>_New game</value>
+    <value>_Nowa gra</value>
   </data>
   <data name="MIOptions" xml:space="preserve">
-    <value>_Options</value>
+    <value>_Opcje</value>
   </data>
   <data name="MIResetScores" xml:space="preserve">
-    <value>Reset high scores</value>
+    <value>Zresetuj wyniki</value>
   </data>
   <data name="MISettings" xml:space="preserve">
-    <value>_Settings</value>
+    <value>_Ustawienia</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Imię</value>
   </data>
   <data name="Orange" xml:space="preserve">
-    <value>Orange</value>
+    <value>Pomarańczowy</value>
   </data>
   <data name="Pink" xml:space="preserve">
-    <value>Pink</value>
+    <value>Różowy</value>
   </data>
   <data name="Purple" xml:space="preserve">
-    <value>Purple</value>
+    <value>Fioletowy</value>
   </data>
   <data name="Red" xml:space="preserve">
-    <value>Red</value>
+    <value>Czerwony</value>
   </data>
   <data name="Score" xml:space="preserve">
-    <value>Score</value>
+    <value>Wynik</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>Date and time</value>
+    <value>Data i czas</value>
   </data>
   <data name="WEnterNameTitle" xml:space="preserve">
-    <value>New score</value>
+    <value>Nowy wynik</value>
   </data>
   <data name="WHighScores" xml:space="preserve">
-    <value>High scores</value>
+    <value>Najwyższe wyniki</value>
   </data>
   <data name="White" xml:space="preserve">
-    <value>White</value>
+    <value>Biały</value>
   </data>
   <data name="WSettingsTitle" xml:space="preserve">
-    <value>Game settings</value>
+    <value>Ustawienia gry</value>
   </data>
   <data name="Yellow" xml:space="preserve">
-    <value>Yellow</value>
+    <value>Żółty</value>
   </data>
 </root>

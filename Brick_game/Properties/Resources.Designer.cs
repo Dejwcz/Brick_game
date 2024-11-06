@@ -160,6 +160,15 @@ namespace Brick_game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hrát při spuštění.
+        /// </summary>
+        public static string CBMusic {
+            get {
+                return ResourceManager.GetString("CBMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Barvy.
         /// </summary>
         public static string GBColors {
@@ -174,6 +183,15 @@ namespace Brick_game.Properties {
         public static string GBGameboardSize {
             get {
                 return ResourceManager.GetString("GBGameboardSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hudba.
+        /// </summary>
+        public static string GBMusic {
+            get {
+                return ResourceManager.GetString("GBMusic", resourceCulture);
             }
         }
         
@@ -394,6 +412,24 @@ namespace Brick_game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nejvyšší skóre.
+        /// </summary>
+        public static string MIHighScores {
+            get {
+                return ResourceManager.GetString("MIHighScores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hudba.
+        /// </summary>
+        public static string MIMusic {
+            get {
+                return ResourceManager.GetString("MIMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Nová hra.
         /// </summary>
         public static string MINewGame {
@@ -426,6 +462,15 @@ namespace Brick_game.Properties {
         public static string MISettings {
             get {
                 return ResourceManager.GetString("MISettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jméno.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -466,11 +511,38 @@ namespace Brick_game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skóre.
+        /// </summary>
+        public static string Score {
+            get {
+                return ResourceManager.GetString("Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum a čas.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nové skóre.
         /// </summary>
         public static string WEnterNameTitle {
             get {
                 return ResourceManager.GetString("WEnterNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nejvyšší skóre.
+        /// </summary>
+        public static string WHighScores {
+            get {
+                return ResourceManager.GetString("WHighScores", resourceCulture);
             }
         }
         

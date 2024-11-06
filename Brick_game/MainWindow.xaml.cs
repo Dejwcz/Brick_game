@@ -32,7 +32,8 @@ public partial class MainWindow : Window {
     private bool gameIsOn = false;                      //Game is running
     private bool isFalling = false;                     //Brick is falling
     private bool isClearBoard = true;                   //Game board is cleared
-    private bool oBrick;                                //Current shape is OBrick
+    private bool oBrick;                                //If current shape is OBrick
+    private bool CBoxMusicIsChecked;
     private Random rand = new Random();
     private Brick[] LShape;
     private Brick[] JShape;
@@ -47,20 +48,22 @@ public partial class MainWindow : Window {
     private Brick[] currentShape;
     private DispatcherTimer timer;
     private string currentDirectory = Directory.GetCurrentDirectory();
-    private string settingFile = Directory.GetCurrentDirectory() + "\\text.txt";
+    private string settingFile = Directory.GetCurrentDirectory() + "\\Resources\\text.txt";
     private int countOfHighscores = 5;
     private HighScores highScores;
     private string highScoresFile = "highscores.xml";
 
     public MainWindow() {
+
+        //!!!Do not forget to update LanguageChange() and WTetris_Loaded() if there was added new UI element with text. Data binding does not working well in this window 
+
         InitializeComponent();
-        SetSettings(LoadSetting());                                                                 //Load and set colors and parameters for board and game
+        SetSettings(LoadSetting());                                                                 //Load and set colors and parameters for board and game. In VS always starts with default values. In compiled file(.exe) works fine. 
 
         highScores = HighScores.LoadFromFile(highScoresFile);                                       //Load high scores from file
         SetHighScores(highScores.GetXFirstHighScoresToString(countOfHighscores));                   //Set high scores to Labels
-       
-        SetUI();
-        //for (int i = 120; i < 120 + columns; i++) { squares[i].Background = bBrickColor; }      //Test line
+
+        SetUI();                                                                                    //method to set UI acording to values in setting file.
     }
     private void SetUI() {
 
@@ -101,7 +104,7 @@ public partial class MainWindow : Window {
         MainContainer.Width = gameField.Width;
 
         WTetris.ResizeMode = ResizeMode.NoResize;
-        WTetris.Height = gameField.Height + 120 < 450 ? 450 : gameField.Height + 120;
+        WTetris.Height = gameField.Height + 120 < 480 ? 480 : gameField.Height + 120;
         WTetris.Width = gameField.Width + 310 < 450 ? 450 : gameField.Width + 310;
         LGameOver.Margin = new Thickness(35 + (gameField.Width - LGameOver.Width) / 2, (gameField.Height / 2), 0, 0);
         LGameOver.Visibility = Visibility.Collapsed;
@@ -120,13 +123,13 @@ public partial class MainWindow : Window {
         Brick JS2 = new(center + columns, squares[center + columns]);
         Brick JS3 = new(center + columns - 1, squares[center + columns - 1]);
         Brick JS4 = new(center + columns - 2, squares[center + columns - 2]);
-        JShape = new Brick[] { JS1, JS2, JS3, JS4 };
+        JShape = new Brick[] { JS1, JS3, JS2, JS4 };
 
         Brick LS1 = new(center, squares[center]);
         Brick LS2 = new(center + columns, squares[center + columns]);
         Brick LS3 = new(center + columns + 1, squares[center + columns + 1]);
         Brick LS4 = new(center + columns + 2, squares[center + columns + 2]);
-        LShape = new Brick[] { LS1, LS2, LS3, LS4 };
+        LShape = new Brick[] { LS1, LS3, LS2, LS4 };
 
         Brick OS1 = new(center, squares[center]);
         Brick OS2 = new(center + 1, squares[center + 1]);
@@ -221,6 +224,7 @@ public partial class MainWindow : Window {
         if (score > 0) {                                        //If is any score saves it and actualizes top game scores
             EnterNewScore();
             SetHighScores(highScores.GetXFirstHighScoresToString(countOfHighscores));
+            highScores.SaveToFile("highscores.xml");
         }
     }
     private void EnterNewScore() {                  //Opens window to enter new name and save record to highscores records
@@ -387,31 +391,6 @@ public partial class MainWindow : Window {
         }
         return rowCleared;
     }
-    private void LanguageChange() {
-        ComboBoxItem selectedItem = CBLanguage.SelectedItem as ComboBoxItem;
-        string cultureCode = selectedItem.Tag.ToString();
-   
-        CultureInfo culture = new CultureInfo(cultureCode);
-        Thread.CurrentThread.CurrentCulture = culture;
-        Thread.CurrentThread.CurrentUICulture = culture;
-
-        BLeft.Content = TXTS.ButtonLeft;
-        BRight.Content = TXTS.ButtonRight;
-        BRotate.Content = TXTS.ButtonRotate;
-        LScore.Content = TXTS.LabelScore + score.ToString();
-        MIGame.Header = TXTS.MIGame;
-        MIHelp.Header = TXTS.MIHelp;
-        LGameOver.Content = TXTS.LabelGameOver;
-        MIEnd.Header = TXTS.MIEnd;
-        MINewGame.Header = TXTS.MINewGame;
-        MISettings.Header = TXTS.MISettings;
-        MIOptions.Header = TXTS.MIOptions;
-        MIResetScores.Header = TXTS.MIResetScores;
-        GBTopScores.Header = TXTS.GBTopScores;
-        if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
-        else { BStart.Content = TXTS.ButtonStart;}
-
-    }
     private string[] LoadSetting() {
         StreamReader sr;
         try {
@@ -419,7 +398,7 @@ public partial class MainWindow : Window {
         }
         catch (FileNotFoundException) {
             StreamWriter sw = new StreamWriter(settingFile);
-            sw.WriteLine("20,10,20,5,#FF0000FF,#FFFF0000,#FF000000");
+            sw.WriteLine("20,10,20,5,#FF0000FF,#FFFF0000,#FF000000,true,");
             sw.Close();
             sr = new StreamReader(settingFile);
         }
@@ -437,6 +416,7 @@ public partial class MainWindow : Window {
         bGBColor = (Brush)new BrushConverter().ConvertFromString(settings[4]);
         bBrickColor = (Brush)new BrushConverter().ConvertFromString(settings[5]);
         bGridColor = (Brush)new BrushConverter().ConvertFromString(settings[6]);
+        CBoxMusicIsChecked = Convert.ToBoolean(settings[7]); 
 
     }
     /// <summary>
@@ -458,7 +438,14 @@ public partial class MainWindow : Window {
             }
         }
     }
-    private void WTetris_Loaded(object sender, RoutedEventArgs e) {
+    private void LanguageChange() {                                             // IN main window data binding does not working good
+        ComboBoxItem selectedItem = CBLanguage.SelectedItem as ComboBoxItem;
+        string cultureCode = selectedItem.Tag.ToString();
+   
+        CultureInfo culture = new CultureInfo(cultureCode);
+        Thread.CurrentThread.CurrentCulture = culture;
+        Thread.CurrentThread.CurrentUICulture = culture;
+
         BLeft.Content = TXTS.ButtonLeft;
         BRight.Content = TXTS.ButtonRight;
         BRotate.Content = TXTS.ButtonRotate;
@@ -468,9 +455,33 @@ public partial class MainWindow : Window {
         LGameOver.Content = TXTS.LabelGameOver;
         MIEnd.Header = TXTS.MIEnd;
         MINewGame.Header = TXTS.MINewGame;
-        MISettings.Header = TXTS.MISettings; 
+        MISettings.Header = TXTS.MISettings;
+        MIOptions.Header = TXTS.MIOptions;
+        MIResetScores.Header = TXTS.MIResetScores;
+        MIMusic.Header = TXTS.MIMusic;
+        MIHighScores.Header = TXTS.MIHighScores;
+        GBTopScores.Header = TXTS.GBTopScores;
+        if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
+        else { BStart.Content = TXTS.ButtonStart;}
+
+    }
+    private void WTetris_Loaded(object sender, RoutedEventArgs e) {                 // IN main window data binding does not working good
+        BLeft.Content = TXTS.ButtonLeft;
+        BRight.Content = TXTS.ButtonRight;
+        BRotate.Content = TXTS.ButtonRotate;
+        LScore.Content = TXTS.LabelScore + score.ToString();
+        MIGame.Header = TXTS.MIGame;
+        MIHelp.Header = TXTS.MIHelp;
+        LGameOver.Content = TXTS.LabelGameOver;
+        MIEnd.Header = TXTS.MIEnd;
+        MIMusic.Header = TXTS.MIMusic;
+        MINewGame.Header = TXTS.MINewGame;
+        MISettings.Header = TXTS.MISettings;
+        MIHighScores.Header = TXTS.MIHighScores;
         if (timer != null && timer.IsEnabled) { BStart.Content = TXTS.ButtonStart_pause; }
         else { BStart.Content = TXTS.ButtonStart; }
+        if (CBoxMusicIsChecked && MIMusic.IsChecked) { MEMusic.Play(); }
+        else { MIMusic.IsChecked = false; }
     }
     private void WTetris_KeyDown(object sender, KeyEventArgs e) {
         if (e.Key == Key.Left) { if (timer != null && timer.IsEnabled) MoveLeft(currentShape); }
@@ -546,14 +557,31 @@ public partial class MainWindow : Window {
     private void MIHelp_Click(object sender, RoutedEventArgs e) {
         MessageBox.Show(WTetris, TXTS.MIHelpMessage);
     }
+    private void MIMusic_Unchecked(object sender, RoutedEventArgs e) {
+        MEMusic.Stop();
+    }
+    private void MIMusic_Checked(object sender, RoutedEventArgs e) {
+        if (MEMusic != null) MEMusic.Play();
+    }
     private void MIResetScores_Click(object sender, RoutedEventArgs e) {
         MessageBoxResult result = MessageBox.Show(TXTS.MBResetScores, TXTS.MBResetScoresCaption, MessageBoxButton.OKCancel, MessageBoxImage.Warning);
         if (result == MessageBoxResult.OK) {
             highScores = new HighScores();
             SetHighScores(highScores.GetXFirstHighScoresToString(countOfHighscores));
+            highScores.SaveToFile("highscores.xml");
         }
+    }
+    private void MEMusic_MediaEnded(object sender, RoutedEventArgs e) {
+        MEMusic.Position = TimeSpan.Zero;
+        MEMusic.Play();
     }
     private void WTetris_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
         highScores.SaveToFile(highScoresFile);
+    }
+    private void MIHighScores_Click(object sender, RoutedEventArgs e) {
+        WHighScores wHighScores = new WHighScores();
+        wHighScores.Owner = this;
+        wHighScores.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        wHighScores.ShowDialog();
     }
 }

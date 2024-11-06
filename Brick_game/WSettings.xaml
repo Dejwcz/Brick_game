@@ -63,9 +63,11 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style><!--Too complicated for now -->
+        </Style>
+        <!--Too complicated for now -->
     </Window.Resources>
     <Grid>
+        <GroupBox HorizontalAlignment="Left" Height="57" Header="{x:Static properties:Resources.GBMusic}" Margin="270,135,0,0" VerticalAlignment="Top" Width="248"/>
         <GroupBox x:Name="GBColors" HorizontalAlignment="Left" Height="125" Header="{x:Static properties:Resources.GBColors}" Margin="270,10,0,0" VerticalAlignment="Top" Width="248"/>
         <GroupBox x:Name="GBSquareSize" HorizontalAlignment="Left" Height="62" Header="GPSquareSize" Margin="30,104,0,0" VerticalAlignment="Top" Width="185"/>
         <GroupBox x:Name="GBStartSpeed" HorizontalAlignment="Left" Height="62" Header="GPStartSpeed" Margin="30,178,0,0" VerticalAlignment="Top" Width="185"/>
@@ -120,5 +122,6 @@
             <ComboBoxItem x:Name="CBIGreen2" Content="{x:Static properties:Resources.Green}" Tag="Green" Background="Green"/>
             <ComboBoxItem x:Name="CBIBlack2" Content="{x:Static properties:Resources.Black}" Tag="Black" Background="Black"/>
         </ComboBox>
+        <CheckBox x:Name="CBoxMusic" Content="{x:Static properties:Resources.CBMusic}" HorizontalAlignment="Left" Height="24" Margin="280,164,0,0" VerticalAlignment="Top" Width="231"/>
     </Grid>
 </Window>

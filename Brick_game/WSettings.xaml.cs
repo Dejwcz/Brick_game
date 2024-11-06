@@ -20,7 +20,7 @@ namespace BrickGame {
     /// Interaction logic for WSettings.xaml
     /// </summary>
     public partial class WSettings : Window {
-        private string settingFile = Directory.GetCurrentDirectory() + "\\text.txt";
+        private string settingFile = Directory.GetCurrentDirectory() + "\\Resources\\text.txt";
         private Brush bGBColor;
         private Brush bBrickColor;
         private Brush bGridColor;
@@ -29,7 +29,7 @@ namespace BrickGame {
             try { SetValues(LoadSetting()); }
             catch (Exception) { SetValues(); }
 
-            #region Initialize UI
+            #region Initialize UI                     
 
             SetSelectedItemInComboBoxes();
             this.Title = TXTS.WSettingsTitle;
@@ -58,13 +58,14 @@ namespace BrickGame {
             settingsValues += bGBColor.ToString() + ",";
             settingsValues += bBrickColor.ToString() + ",";
             settingsValues += bGridColor.ToString() + ",";
+            settingsValues += CBoxMusic.IsChecked.ToString() + ",";
 
             StreamWriter streamWriter = new StreamWriter(settingFile);
             streamWriter.Write(settingsValues);
             streamWriter.Close();
         }
         private string[] LoadSetting() {
-            StreamReader sr = new StreamReader(settingFile);           
+            StreamReader sr = new StreamReader(settingFile);
             string[] strings = sr.ReadLine().Split(",");
             sr.Close();
             return strings;
@@ -82,6 +83,7 @@ namespace BrickGame {
             bGBColor = (Brush)new BrushConverter().ConvertFromString(values[4]);
             bBrickColor = (Brush)new BrushConverter().ConvertFromString(values[5]);
             bGridColor = (Brush)new BrushConverter().ConvertFromString(values[6]);
+            CBoxMusic.IsChecked = Convert.ToBoolean(values[7]);
             SetColors();
         }
         /// <summary>
@@ -95,6 +97,7 @@ namespace BrickGame {
             bGBColor = Brushes.Blue;
             bBrickColor = Brushes.Red; 
             bGridColor = Brushes.Black;
+            CBoxMusic.IsChecked = true;
             SetColors();
         }
         private void SetColors() {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Enumeration;
@@ -46,6 +47,7 @@ public class HighScores {
     public void AddRecord(Record record) {
             this.records.Add(record);          
     }
+   
     public void RemoveRecord(Record record) { this.records.Remove(record); }
     public void ClearAll() { this.records.Clear(); }
     /// <summary>
@@ -83,7 +85,7 @@ public class HighScores {
         return strings;
     }
     public void SaveToFile(string filename) {
-        string dataFile = (Directory.GetCurrentDirectory() + "\\" + filename);
+        string dataFile = (Directory.GetCurrentDirectory() + "\\Resources\\" + filename);
         FileStream fs = new FileStream(dataFile, FileMode.Create);
         XmlSerializer xs = new XmlSerializer(typeof(HighScores));
         xs.Serialize(fs, this);
@@ -91,7 +93,7 @@ public class HighScores {
     }
     public static HighScores LoadFromFile(string filename) {
         HighScores scores = new HighScores();
-        string dataFile = (Directory.GetCurrentDirectory() + "\\" + filename);
+        string dataFile = (Directory.GetCurrentDirectory() + "\\Resources\\" + filename);
         try {
             using (FileStream fs = new FileStream(dataFile, FileMode.Open)) {
                 XmlSerializer xs = new XmlSerializer(typeof(HighScores));
@@ -102,5 +104,6 @@ public class HighScores {
         catch (Exception e) { MessageBox.Show(e.Message); }
         return scores;
     }
+
 }
 
