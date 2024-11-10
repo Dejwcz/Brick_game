@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AppSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Rows>20</Rows>
+  <Columns>10</Columns>
+  <SquareSize>10</SquareSize>
+  <Speed>5</Speed>
+  <BackgroundColor>#FF0000FF</BackgroundColor>
+  <BrickColor>#FFFF0000</BrickColor>
+  <GridColor>#FF000000</GridColor>
+  <PlayOnStartApp>false</PlayOnStartApp>
+</AppSettings>
