@@ -6,7 +6,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brick_game", "Brick_game\Br
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A0512E25-9F0D-4138-828B-2DC9EE1AB0FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E9288895-AE79-46C2-92A3-196D618BB528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{E9288895-AE79-46C2-92A3-196D618BB528}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWPF", "TestWPF\TestWPF.csproj", "{2D5E78AD-7944-4642-8794-C1C749742D4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,9 +24,16 @@ Global
 		{E9288895-AE79-46C2-92A3-196D618BB528}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9288895-AE79-46C2-92A3-196D618BB528}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9288895-AE79-46C2-92A3-196D618BB528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D5E78AD-7944-4642-8794-C1C749742D4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5E78AD-7944-4642-8794-C1C749742D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5E78AD-7944-4642-8794-C1C749742D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5E78AD-7944-4642-8794-C1C749742D4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D5E78AD-7944-4642-8794-C1C749742D4A} = {A0512E25-9F0D-4138-828B-2DC9EE1AB0FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6E27D0DC-4D34-492C-89E2-767A7825AADD}

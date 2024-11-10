@@ -18,7 +18,7 @@
   <ItemGroup>
     <None Remove="Resources\good-night-melody.mp3" />
     <None Remove="Resources\highscores.xml" />
-    <None Remove="Resources\text.txt" />
+    <None Remove="Resources\settings.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +32,10 @@
     <Content Include="Resources\highscores.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\text.txt">
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

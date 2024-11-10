@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Brick_game;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,93 +21,27 @@ namespace BrickGame {
     /// Interaction logic for WSettings.xaml
     /// </summary>
     public partial class WSettings : Window {
-        private string settingFile = Directory.GetCurrentDirectory() + "\\Resources\\text.txt";
-        private Brush bGBColor;
-        private Brush bBrickColor;
-        private Brush bGridColor;
+
+        private string settingFile = "settings.xml";
+        private AppSettings appSettings;
+        private AppSettingsViewModel viewModel;
+
         public WSettings() {
             InitializeComponent();
-            try { SetValues(LoadSetting()); }
-            catch (Exception) { SetValues(); }
+            appSettings = AppSettings.LoadFromFile(settingFile);
+            viewModel = new AppSettingsViewModel(appSettings);
+            this.DataContext = viewModel;
 
-            #region Initialize UI                     
-
+            SetColors();                   
             SetSelectedItemInComboBoxes();
-            this.Title = TXTS.WSettingsTitle;
-            GBSquareSize.Header = TXTS.GBSquareSize;
-            GBStartSpeed.Header = TXTS.GBStartSpeed;
-            GBGameboardSize.Header = TXTS.GBGameboardSize;
-            LHeigth.Content = TXTS.LHeight;
-            LWidth.Content = TXTS.LWidth;
-            LSquareSize.Content = TXTS.LSquareSize;
-            LStartSpeed.Content = TXTS.LStartSpeed;
-            BBack.Content = TXTS.BBack;
-            BSave.Content = TXTS.BSave;
-            BDefault.Content = TXTS.BDefault;
-            #endregion
-
-        }
-
-
-        private void SaveSettings() {
-            TestAll();
-            string settingsValues = "";
-            settingsValues += TBHeigth.Text + ",";
-            settingsValues += TBWidth.Text + ",";
-            settingsValues += TBSquareSize.Text + ",";
-            settingsValues += TBStartSpeed.Text + ",";
-            settingsValues += bGBColor.ToString() + ",";
-            settingsValues += bBrickColor.ToString() + ",";
-            settingsValues += bGridColor.ToString() + ",";
-            settingsValues += CBoxMusic.IsChecked.ToString() + ",";
-
-            StreamWriter streamWriter = new StreamWriter(settingFile);
-            streamWriter.Write(settingsValues);
-            streamWriter.Close();
-        }
-        private string[] LoadSetting() {
-            StreamReader sr = new StreamReader(settingFile);
-            string[] strings = sr.ReadLine().Split(",");
-            sr.Close();
-            return strings;
-        }
-        /// <summary>
-        /// Set values for gameboard
-        /// </summary>
-        /// <param name="values"></param>
-        private void SetValues(string[] values) {
-            TBHeigth.Text = values[0];
-            TBWidth.Text = values[1];
-            TBSquareSize.Text = values[2];
-            TBStartSpeed.Text = Convert.ToString(int.Parse(values[3]));
-
-            bGBColor = (Brush)new BrushConverter().ConvertFromString(values[4]);
-            bBrickColor = (Brush)new BrushConverter().ConvertFromString(values[5]);
-            bGridColor = (Brush)new BrushConverter().ConvertFromString(values[6]);
-            CBoxMusic.IsChecked = Convert.ToBoolean(values[7]);
-            SetColors();
-        }
-        /// <summary>
-        /// Without args set default values for gameboard
-        /// </summary>
-        private void SetValues() {
-            TBHeigth.Text = "20";
-            TBWidth.Text = "10";
-            TBSquareSize.Text = "20";
-            TBStartSpeed.Text = "5";
-            bGBColor = Brushes.Blue;
-            bBrickColor = Brushes.Red; 
-            bGridColor = Brushes.Black;
-            CBoxMusic.IsChecked = true;
-            SetColors();
         }
         private void SetColors() {
-                LGBColor.Background = bGBColor;
-                LBrickColor.Background = bBrickColor;
-                LGridColor.Background = bGridColor;
-                ChangeTextColor(LGBColor, bGBColor);                    
-                ChangeTextColor(LBrickColor, bBrickColor);
-                ChangeTextColor(LGridColor, bGridColor);
+                LGBColor.Background = appSettings.GetBackgroundColor();
+                LBrickColor.Background = appSettings.GetBrickColor();
+                LGridColor.Background = appSettings.GetGridColor();
+                ChangeTextColor(LGBColor, appSettings.GetBackgroundColor());                    
+                ChangeTextColor(LBrickColor, appSettings.GetBrickColor());
+                ChangeTextColor(LGridColor, appSettings.GetGridColor());
         }
         private void SetSelectedColorInComboBox(ComboBox comboBox, Brush color) {                      //for one ComboBox
             foreach (ComboBoxItem item in comboBox.Items) {
@@ -119,9 +54,9 @@ namespace BrickGame {
             }
         }
         private void SetSelectedItemInComboBoxes() {                                                    //for all Comboboxes          
-            SetSelectedColorInComboBox(CBGBColor, bGBColor);
-            SetSelectedColorInComboBox(CBGridColor, bGridColor);
-            SetSelectedColorInComboBox(CBBrickColor, bBrickColor);
+            SetSelectedColorInComboBox(CBGBColor, appSettings.GetBackgroundColor());
+            SetSelectedColorInComboBox(CBGridColor, appSettings.GetGridColor());
+            SetSelectedColorInComboBox(CBBrickColor, appSettings.GetBrickColor());
         }                                                                                        
         private void TestAll() {
             TestHeigth();
@@ -169,9 +104,9 @@ namespace BrickGame {
             if (CBBrickColor.SelectedIndex == -1) {
                 MessageBoxResult result = MessageBox.Show(TXTS.MBMissingColor, TXTS.MBMissingColorHead, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes) {
-                    bGBColor = Brushes.Blue;
-                    bBrickColor = Brushes.Red;
-                    bGridColor = Brushes.Black;
+                    appSettings.SetBackgroundColor(Brushes.Blue);
+                    appSettings.SetBrickColor(Brushes.Red);
+                    appSettings.SetGridColor(Brushes.Black);
                     return true;
                 }
                 return false;
@@ -182,9 +117,9 @@ namespace BrickGame {
             if (CBGBColor.SelectedIndex == -1) {
                 MessageBoxResult result = MessageBox.Show(TXTS.MBMissingColor, TXTS.MBMissingColorHead, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes) {
-                    bGBColor = Brushes.Blue;
-                    bBrickColor = Brushes.Red;
-                    bGridColor = Brushes.Black;
+                    appSettings.SetBackgroundColor(Brushes.Blue);
+                    appSettings.SetBrickColor(Brushes.Red);
+                    appSettings.SetGridColor(Brushes.Black);
                     return true;
                 }
                 return false;
@@ -226,7 +161,8 @@ namespace BrickGame {
         }
         private void BSave_Click(object sender, RoutedEventArgs e) {
             if (TestCBBrickColors() && TestCBGBColors()) {
-                SaveSettings();
+                TestAll();
+                appSettings.SaveToFile(settingFile);
                 this.DialogResult = true;
                 this.Close();
             }
@@ -244,15 +180,15 @@ namespace BrickGame {
             TestStartSpeed();
         }
         private void BDefault_Click(object sender, RoutedEventArgs e) {
-            SetValues();
+            SetColors();
             SetSelectedItemInComboBoxes();
         }
 
         private bool _isUpdatingComboBox = false;
         private void CBGBColor_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (CBGBColor.SelectedItem is ComboBoxItem selectedItem) {
-                bGBColor = (Brush)new BrushConverter().ConvertFromString(selectedItem.Tag.ToString());
-                if (bBrickColor is SolidColorBrush brickBrush && bGBColor is SolidColorBrush gbBrush) {
+                appSettings.SetBackgroundColor((Brush)new BrushConverter().ConvertFromString(selectedItem.Tag.ToString()));
+                if (appSettings.GetBrickColor() is SolidColorBrush brickBrush && appSettings.GetBackgroundColor() is SolidColorBrush gbBrush) {
                     if (brickBrush.Color.Equals(gbBrush.Color)) {
                         MessageBox.Show(TXTS.MBSameColors);
                         _isUpdatingComboBox = true;
@@ -262,8 +198,8 @@ namespace BrickGame {
                         _isUpdatingComboBox = false;
                     }
                     else {
-                        LGBColor.Background = bGBColor;
-                        ChangeTextColor(LGBColor, bGBColor);
+                        LGBColor.Background = appSettings.GetBackgroundColor();
+                        ChangeTextColor(LGBColor, appSettings.GetBackgroundColor());
                     }
                 }
             }
@@ -271,8 +207,8 @@ namespace BrickGame {
         private void CBBrickColor_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (_isUpdatingComboBox) return;
             if (CBBrickColor.SelectedItem is ComboBoxItem selectedItem) {
-                bBrickColor = (Brush)new BrushConverter().ConvertFromString(selectedItem.Tag.ToString());
-                if (bBrickColor is SolidColorBrush brickBrush && bGBColor is SolidColorBrush gbBrush) {
+                appSettings.SetBrickColor((Brush)new BrushConverter().ConvertFromString(selectedItem.Tag.ToString()));
+                if (appSettings.GetBrickColor() is SolidColorBrush brickBrush && appSettings.GetBackgroundColor() is SolidColorBrush gbBrush) {
                     if (brickBrush.Color.Equals(gbBrush.Color)) {
                         MessageBox.Show(TXTS.MBSameColors);
                         _isUpdatingComboBox = true;
@@ -282,17 +218,17 @@ namespace BrickGame {
                         _isUpdatingComboBox = false;
                     }
                     else {
-                        LBrickColor.Background = bBrickColor;
-                        ChangeTextColor(LBrickColor, bBrickColor);
+                        LBrickColor.Background = appSettings.GetBrickColor();
+                        ChangeTextColor(LBrickColor, appSettings.GetBrickColor());
                     }
                 }
             }
         }
         private void CBGridColor_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (CBGridColor.SelectedItem is ComboBoxItem selectedItem) {
-                bGridColor = (Brush)new BrushConverter().ConvertFromString(selectedItem.Tag.ToString());
-                LGridColor.Background = bGridColor;
-                ChangeTextColor(LGridColor, bGridColor);
+                appSettings.SetGridColor((Brush)new BrushConverter().ConvertFromString(selectedItem.Tag.ToString()));
+                LGridColor.Background = appSettings.GetGridColor();
+                ChangeTextColor(LGridColor, appSettings.GetGridColor());
             }
         }
 
