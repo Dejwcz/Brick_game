@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,34 @@ public class AppSettings{
     public string BrickColor { get; set; }                            //Brick color
     public string GridColor { get; set; }                             //Grid color
     public bool PlayOnStartApp { get; set; }
+
+    [XmlIgnore]
+    private Brush backgroundColorBrush;
+    [XmlIgnore]
+    public Brush BackgroundColorBrush {
+        get => backgroundColorBrush ?? GetBackgroundColor(); // If backgroundColorBrush is not set yet, use GetBackgroundColor()
+        set => backgroundColorBrush = value;
+    }
+    [XmlIgnore]
+    private Brush brickColorBrush;
+    [XmlIgnore]
+    public Brush BrickColorBrush {
+        get => brickColorBrush ?? GetBrickColor(); // If brickColorBrush is not set yet, use GetBrickColor()
+        set => brickColorBrush = value;
+    }
+    [XmlIgnore]
+    private Brush gridColorBrush;
+    [XmlIgnore]
+    public Brush GridColorBrush {
+        get => gridColorBrush ?? GetGridColor(); // If gridColorBrush is not set yet, use GetGridColor()
+        set => gridColorBrush = value;
+    }
+    [OnDeserialized]
+    private void OnDeserializedMethod(StreamingContext context) {           // Initialization after deserialization
+        backgroundColorBrush ??= GetBackgroundColor();
+        brickColorBrush ??= GetBrickColor();
+        gridColorBrush ??= GetGridColor();
+    }
 
     /// <summary>
     /// Empty constructor for default settings
