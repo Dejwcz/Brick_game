@@ -368,3 +368,5 @@ FodyWeavers.xsd
 /Brick_game/Resources
 /TestWPF
 /Test
+/Brick_game/MainWindow.xaml
+/Brick_game/MainWindow.xaml.cs
