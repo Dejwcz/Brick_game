@@ -1,0 +1,128 @@
+﻿<Window x:Class="Brick_game.WMain2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Brick_game"
+        xmlns:converters="clr-namespace:Brick_game.Converters"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="WMain2" Height="500" Width="450" 
+        Name="main2"
+        SnapsToDevicePixels="True" Loaded="main2_Loaded" GotFocus="main2_GotFocus">
+    <Window.Resources>
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Left" Command="{Binding MoveLeftCommand}" />
+        <KeyBinding Key="Right" Command="{Binding MoveRightCommand}" />
+        <KeyBinding Key="Up" Command="{Binding RotateCommand}" />
+        <KeyBinding Key="Space" Command="{Binding StartPauseCommand}" />
+        <KeyBinding Key="Down" Command="{Binding MoveDownCommand}" />
+    </Window.InputBindings>
+    <DockPanel>
+        <MediaElement x:Name="meMusic" HorizontalAlignment="Right" Height="0" VerticalAlignment="Top" Width="20" 
+                      Source="Resources\good-night-melody.mp3" LoadedBehavior="Manual" UnloadedBehavior="Close" 
+                      MediaEnded="meMusic_MediaEnded" Visibility="Collapsed"/>
+        <Menu x:Name="mMenu" DockPanel.Dock="Top" Background="White">
+            <MenuItem x:Name="MIGame" Header="{DynamicResource MIGame}">
+                <MenuItem x:Name="MINewGame" Header="{DynamicResource MINewGame}" Command="{Binding NewGameCommand}"/>
+                <MenuItem x:Name="MIHighScores" Header="{DynamicResource MIHighScores}" CommandParameter="{x:Reference Name=main2}" Command="{Binding HighScoresOpenCommand}" />
+                <Separator/>
+                <MenuItem x:Name="MIEnd" Header="{DynamicResource MIEnd}" />
+            </MenuItem>
+            <MenuItem x:Name="MIOptions" Header="{DynamicResource MIOptions}">
+                <MenuItem x:Name="MISettings" Header="{DynamicResource MISettings}" CommandParameter="{x:Reference Name=main2}" Command="{Binding SettingsOpenCommand}"/>
+                <MenuItem x:Name="MIMusic" Header ="{DynamicResource MIMusic}" IsCheckable="True" IsChecked="True" Checked="MIMusic_Checked" Unchecked="MIMusic_Unchecked"/>
+                <Separator/>
+                <MenuItem x:Name="MIResetScores" Header="{DynamicResource MIResetScores}" Click="MIResetScores_Click" />
+            </MenuItem>
+            <MenuItem x:Name="MIHelp" Header="{DynamicResource MIHelp}" Click="MIHelp_Click"/>
+        </Menu>
+        <StatusBar x:Name="sbStatusBar" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Background="White">
+            <StatusBarItem HorizontalAlignment="Right">
+                <ComboBox x:Name="cbLanguage" Width="100"  SelectedIndex="0" Focusable="False" SelectionChanged="cbLanguage_SelectionChanged" >
+                    <ComboBoxItem Content="Česky" Tag="cs-CZ"/>
+                    <ComboBoxItem Content="Polski" Tag="pl-PL"/>
+                    <ComboBoxItem Content="English" Tag="en-US"/>
+                    <ComboBoxItem Content="Deutsch" Tag="de-DE"/>
+                </ComboBox>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="gGameBoard" Margin="5" Grid.Column="0">
+                <Grid x:Name="MainContainer">
+                    <ItemsControl ItemsSource="{Binding GameBoard}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding Columns}" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush= "{Binding DataContext.GridColor, RelativeSource={RelativeSource AncestorType=ItemsControl}}" BorderThickness="1" >
+                                    <Rectangle Fill="{Binding IsOn, Converter={StaticResource BoolToColorConverter}}" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Grid>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource LabelGameOver}" FontSize="25" FontWeight="Heavy">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding GameIsOn}" Value="False">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <StackPanel x:Name="spControls" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{DynamicResource LabelScore}" Margin="10" FontSize="20" FontWeight="Bold"/>
+                    <Label Content="{Binding Score}" Margin="10" FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+                <GroupBox x:Name="gbHighScoreGroupBox" Header="{DynamicResource GBTopScores}" Margin="5" Height="150">
+                    <ItemsControl x:Name="spHighScoreLabels">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Label Content="{Binding Name}" />
+                                    <Label Content="{Binding Score}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+                <Button x:Name="bNewGame" Height="40" Margin="10,50" Style="{StaticResource RoundedButtonStyle}" Content="{Binding ButtonContent}" Command="{Binding StartPauseCommand}">
+                </Button>
+                <Grid x:Name="gpokus" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Margin="2"  Style="{StaticResource RoundedButtonStyle}" Content="{DynamicResource ButtonLeft}" Command="{Binding MoveLeftCommand}"/>
+                    <StackPanel Grid.Column="1">
+                        <Button Margin="2" Style="{StaticResource RoundedButtonStyle}" Content="{DynamicResource ButtonRotate}" Command="{Binding RotateCommand}"/>
+                        <Button Margin="2" Style="{StaticResource RoundedButtonStyle}" Content="{DynamicResource ButtonDown}" Command="{Binding MoveDownCommand}"/>
+                    </StackPanel>
+                    <Button Grid.Column="2" Margin="2" Style="{StaticResource RoundedButtonStyle }" Content="{DynamicResource ButtonRight}" Command="{Binding MoveRightCommand}"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

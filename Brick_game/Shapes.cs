@@ -1,13 +1,4 @@
-﻿using Brick_game;
-using BrickGame;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace Brick_game;
+﻿namespace Brick_game;
 internal class Shapes {
     private int center;
 
@@ -75,5 +66,5 @@ internal class Shapes {
 
         ShapesArray = new[] { IShape, JShape, LShape, OShape, SShape, TShape, ZShape };
         Count = ShapesArray.Length;
-    }   
+    }
 }

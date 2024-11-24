@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -66,6 +60,7 @@ public class AppSettings{
         BrickColor = "#FFFF0000";
         GridColor = "#FF000000";
     }
+
     public AppSettings(int rows, int columns, int squareSize, int speed, string backgroundColor, string brickColor, string gridColor, bool playOnStartApp) {
         Rows = rows;
         Columns = columns;
@@ -78,13 +73,21 @@ public class AppSettings{
     }
 
     public void SetRows(int rows) { this.Rows = rows; }
+
     public void SetColumns(int columns) { this.Columns = columns; }
+
     public void SetSpeed(int speed) { this.Speed = speed; }
+
     public void SetSquareSize(int squareSize) { this.SquareSize = squareSize; }
+
     public void SetBackgroundColor(Brush background) { this.BackgroundColor = background.ToString(); }
+
     public void SetBrickColor(Brush brickcolor) { this.BrickColor = brickcolor.ToString(); }
+
     public void SetGridColor(Brush gridcolor) { this.GridColor = gridcolor.ToString(); }
+
     public void SetPlayOnStartApp(bool playMusic) { this.PlayOnStartApp = playMusic; }
+
     public void SetAll(int rows, int columns, int squareSize, int speed, Brush backgroundColor, Brush brickColor, Brush gridColor, bool playMusic) {
         SetRows(rows);
         SetColumns(columns);
@@ -95,15 +98,19 @@ public class AppSettings{
         SetGridColor(gridColor);
         SetPlayOnStartApp(playMusic);
     }
+
     public Brush GetBackgroundColor() {
         return (Brush)new BrushConverter().ConvertFromString(BackgroundColor);
     }
+
     public Brush GetBrickColor() {
         return (Brush)new BrushConverter().ConvertFromString(BrickColor);
     }
+
     public Brush GetGridColor() {
         return (Brush)new BrushConverter().ConvertFromString(GridColor);
     }
+
     public void SaveToFile(string filename) {
         string dataFile = (Directory.GetCurrentDirectory() + "\\Resources\\" + filename);
         FileStream fs = new FileStream(dataFile, FileMode.Create);
@@ -111,6 +118,7 @@ public class AppSettings{
         xs.Serialize(fs, this);
         fs.Close();
     }
+
     public static AppSettings LoadFromFile(string filename) {
         AppSettings appSettings = new AppSettings();
         string dataFile = (Directory.GetCurrentDirectory() + "\\Resources\\" + filename);

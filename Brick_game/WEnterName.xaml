@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Brick_game"
-        xmlns:properties="clr-namespace:Brick_game.Properties"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="{x:Static properties:Resources.WEnterNameTitle}" Height="180" Width="300">
+        Title="{StaticResource WEnterNameTitle}" Height="180" Width="300">
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Template">
@@ -40,8 +40,8 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Label x:Name="LEnterName" Content="{x:Static properties:Resources.LEnterName}" HorizontalAlignment="Left" Height="30" Margin="30,30,0,0" Width="100" VerticalAlignment="Top"/>
+        <Label x:Name="LEnterName" Content="{StaticResource LEnterName}" HorizontalAlignment="Left" Height="30" Margin="30,30,0,0" Width="100" VerticalAlignment="Top"/>
         <TextBox x:Name="TBEnterName" HorizontalAlignment="Right" Height="30" Margin="0,30,30,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Style="{StaticResource RoundedTextBoxStyle}" KeyDown="TBEnterName_KeyDown"/>
-        <Button Content="{x:Static properties:Resources.BSave}" HorizontalAlignment="Center" Height="30" Margin="0,0,0,30" VerticalAlignment="Bottom" Width="130" Click="Button_Click" Style="{StaticResource RoundedButtonStyle}"/>
+        <Button Content="{StaticResource BSave}" HorizontalAlignment="Center" Height="30" Margin="0,0,0,30" VerticalAlignment="Bottom" Width="130" Click="Button_Click" Style="{StaticResource RoundedButtonStyle}"/>
     </Grid>
 </Window>
